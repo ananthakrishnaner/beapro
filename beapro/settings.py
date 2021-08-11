@@ -32,6 +32,12 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = "accounts.Account"
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'accounts.backends.CaseInsensitiveModelBackend'
+) 
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'rolepermissions',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +66,7 @@ ROOT_URLCONF = 'beapro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +88,7 @@ WSGI_APPLICATION = 'beapro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beapro',
+        'NAME': 'beaprodb',
         'USER': 'postgres',
         'PASSWORD':'ak',
         'HOST':'localhost'
@@ -112,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -120,8 +128,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'beapro/static')
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
