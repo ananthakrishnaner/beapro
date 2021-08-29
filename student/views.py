@@ -5,8 +5,7 @@ from django.contrib import messages,auth
 from django.contrib.auth import logout
 from .models import StudentProfile
 from .forms import UserProfileForm,StudentUpdateForm
-
-
+from .decorators import prime_user
 
 #create student account
 def account_signup(request):
@@ -25,7 +24,7 @@ def account_signup(request):
                 
                 user = Account.object.create_user(username=username,email=email ,password=password)
                 #Account.is_student = True
-                #assign_role(user,'agent')
+                # assign_role(user,'student')
                 messages.success(request, 'Account created successfully')
                 return redirect('/')
     return render(request,'student/login.html')
@@ -56,9 +55,14 @@ def logout_student(request):
     return redirect('student_account_login')
 
 
+# Edit Profile
+
 def student_profile(request):
     user = request.user.id
-    
+    std = StudentProfile.objects.get(id=user)
+    if std.is_student == False:
+        return redirect('index')
+    user = request.user.id
     try:
         student = StudentProfile.objects.get(id=user)
     except:

@@ -16,6 +16,8 @@ class StudentProfile(models.Model):
     wallet_amount = models.IntegerField(blank=True,null=True)
     is_allowed_to_publish = models.BooleanField(default=False)
     prime_user = models.BooleanField(default=False)
+    is_allowd_view_blog = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=True)
 
     def __str__(self):
         return self.fullname

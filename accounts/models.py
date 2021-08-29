@@ -76,3 +76,4 @@ class Account(AbstractBaseUser):
     def get_all_permissions(obj=None):
         return True
     
+    
