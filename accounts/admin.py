@@ -16,4 +16,6 @@ class AccountAdmmin(UserAdmin):
     list_filter =()
     fieldsets = ()
 
+
 admin.site.register(Account,AccountAdmmin)
+

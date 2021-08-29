@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'mainapp',
     'student',
     'rolepermissions',
+
 ]
 
 MIDDLEWARE = [
@@ -90,7 +91,7 @@ WSGI_APPLICATION = 'beapro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beaprodb',
+        'NAME': 'bapro',
         'USER': 'postgres',
         'PASSWORD':'ak',
         'HOST':'localhost'

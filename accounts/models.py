@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, AbstractUser,BaseUserManager
 # Create your models here.
 
 # create a new user
@@ -34,7 +34,7 @@ class MyAccoutManager(BaseUserManager):
 
 
 
-def get_profile_image_filepath(self):
+def get_profile_image_filepath(self,filename):
     return f'profile_image/{self.pk}/{"profile_image.png"}'
 
 def get_default_profile_image():
@@ -70,4 +70,9 @@ class Account(AbstractBaseUser):
     def has_module_perms(self,app_label):
         return True
 
+    def get_group_permissions(obj=None):
+        return True
+
+    def get_all_permissions(obj=None):
+        return True
     
