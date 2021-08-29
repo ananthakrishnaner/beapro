@@ -53,13 +53,12 @@
                             <div class="containers">
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    <h1>Ananthakrishnan
-                                        <small>Mathematics</small>
+                                    <h1>{{user.username}}
+                                        <small></small>
                                     </h1>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
-                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"/>
-                                            <label class="labels" for="imageUpload">{{u_form.profile_image}}</label>
+
                                         </div>
                                         <div class="avatar-preview">
                                             <div
@@ -84,6 +83,9 @@
                                     <div class="row mt-3">
                                         <div class="col-md-12">
                                             <label class="labelss">PhoneNumber</label>{{s_form.mobile}}</div>
+                                        
+                                        <div class="col-md-12">
+                                                <label class="labelss">Profile Image</label>{{u_form.profile_image}}</div>
                                         <div class="col-md-12">
                                             <label class="labelss">Interested in</label>{{s_form.Interest}}</div>
                                         <div class="col-md-12">

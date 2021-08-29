@@ -14,6 +14,8 @@ class UserProfileForm(forms.ModelForm):
     }))
     profile_image = forms.ImageField(widget=forms.FileInput(attrs={
         'class':'pic',
+        'class': 'form-control',
+        'id': 'imageUpload',
     }))
 
     class Meta:

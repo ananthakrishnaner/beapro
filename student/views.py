@@ -58,12 +58,20 @@ def logout_student(request):
 
 def student_profile(request):
     user = request.user.id
-    student = StudentProfile.objects.get(id=user)
+    
+    try:
+        student = StudentProfile.objects.get(id=user)
+    except:
+        student = StudentProfile.objects.create(user=request.user,fullname='unknown')
+        student.save()
+    
     if request.method == 'POST':
         u_form = UserProfileForm(request.POST,
                                 request.FILES,
                                 instance=request.user)
         s_form = StudentUpdateForm(request.POST,instance=student)
+        ak =request.POST.get('profile_image')
+        print(f'ak bro {ak}')
         if u_form.is_valid() and s_form.is_valid():
             u_form.save()
             s_form.save()
