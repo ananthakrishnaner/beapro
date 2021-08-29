@@ -23,8 +23,7 @@ def account_signup(request):
             else:
                 
                 user = Account.object.create_user(username=username,email=email ,password=password)
-                #Account.is_student = True
-                # assign_role(user,'student')
+
                 messages.success(request, 'Account created successfully')
                 return redirect('/')
     return render(request,'student/login.html')
@@ -39,12 +38,16 @@ def account_login(request):
             return redirect('student/login.html')
         else:
             user1 = auth.authenticate(email=email,password=password)
-            if user1 is not None:
-                auth.login(request,user1)
-                return redirect('/')
+            std_check = StudentProfile.objects.get(id=user1.id)
+            if std_check.is_student == True:
+                if user1 is not None:
+                    auth.login(request,user1)
+                    return redirect('/')
+                else:
+                    messages.warning(request, 'Invalid Credentials')
+                    return redirect('login')
             else:
-                messages.warning(request, 'Invalid Credentials')
-                return redirect('login')
+                return redirect('/')
 
     return render(request,'student/login.html')
 
@@ -60,6 +63,7 @@ def logout_student(request):
 def student_profile(request):
     user = request.user.id
     std = StudentProfile.objects.get(id=user)
+    
     if std.is_student == False:
         return redirect('index')
     user = request.user.id
@@ -74,8 +78,6 @@ def student_profile(request):
                                 request.FILES,
                                 instance=request.user)
         s_form = StudentUpdateForm(request.POST,instance=student)
-        ak =request.POST.get('profile_image')
-        print(f'ak bro {ak}')
         if u_form.is_valid() and s_form.is_valid():
             u_form.save()
             s_form.save()
@@ -87,5 +89,6 @@ def student_profile(request):
     context = {
         'u_form':u_form,
         's_form':s_form,
+        'std':std,
     }
     return render(request,'student/editprofile.html',context)

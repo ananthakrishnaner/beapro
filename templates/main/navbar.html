@@ -1,8 +1,12 @@
 {% load static %}
 
+
+
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container py-2">
+       
         <a class="navbar-brand font-weight-bold" href="#">BEAPRO</a>
+        
         <button
             class="navbar-toggler"
             type="button"
@@ -47,7 +51,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{{user}}</a>
+                    <a class="nav-link" href="#"><i style="color:gold;" class="fas fa-money-bill-alt"></i>{{std.wallet_amount}}</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
