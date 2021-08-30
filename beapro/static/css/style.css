@@ -30,6 +30,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-light .navbar-nav .nav-link {
 	color: #453e6e;
 	font-weight: 500;
+	padding-right:4.5rem;
 }
 .bb li {
 	margin-bottom: 5px;
@@ -277,9 +278,7 @@ i .fa .fa-bell::before{
 }
 
 @media(max-width:768px) {	
-.banner-bg {
 
-}
 .user-profile-section{
 	position: absolute;
     top: 1px;

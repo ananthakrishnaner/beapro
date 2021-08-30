@@ -1,0 +1,136 @@
+/* Global Reset */
+
+/* {
+  padding: 0;
+  margin: 0;
+} */
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.plans {
+  width: 350px;
+  height: 60px;
+  border: 2px solid #3b185f;
+  border-radius: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-bottom: 5%;
+}
+
+.main-heading {
+  text-align: center;
+  font-weight: 700;
+  font-size: 50px;
+  color: #e2900b;
+}
+
+.current-coin {
+  text-align: center;
+  color: #e2900b;
+  font-weight: normal;
+}
+
+.money-bill {
+  width: 30px;
+  filter: invert(73%) sepia(15%) saturate(5701%) hue-rotate(352deg)
+    brightness(88%) contrast(100%);
+  position: absolute;
+  top: 76px;
+  left: 284px;
+}
+
+.coins {
+  width: 30px;
+  filter: invert(73%) sepia(15%) saturate(5701%) hue-rotate(352deg)
+    brightness(88%) contrast(100%);
+  position: absolute;
+  top: 27%;
+  left: 5%;
+}
+
+.available-coin {
+  text-transform: uppercase;
+  font-style: italic;
+  position: absolute;
+  top: 113px;
+  left: 267px;
+  color: #555;
+}
+
+.plan-text {
+  font-size: 22px;
+  font-weight: bold;
+  position: absolute;
+  top: -4%;
+  left: 20%;
+  color: #3b185f;
+}
+
+.plan-button {
+  padding: 8px 35px;
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  /* font-weight: bold; */
+  background-color: #3b185f;
+  color: #eee;
+  position: absolute;
+  top: 18%;
+  right: 5%;
+}
+
+.plan-button:hover {
+  background-color: #eee;
+  color: #3b185f;
+  border: 1px solid #3b185f;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .mbcontainer {
+    width: 450px;
+    margin-left: -20px;
+    margin-right: auto;
+    position: relative;
+  }
+  .main-heading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 35px;
+    color: #e2900b;
+  }
+  .money-bill {
+    width: 30px;
+    filter: invert(73%) sepia(15%) saturate(5701%) hue-rotate(352deg)
+      brightness(88%) contrast(100%);
+    position: absolute;
+    top: 54px;
+    left: 171px;
+  }
+  .available-coin {
+    text-transform: uppercase;
+    font-style: italic;
+    position: absolute;
+    font-size: 12px;
+    top: 90px;
+    left: 175px;
+    color: #555;
+  }
+  .current-coin {
+    text-align: center;
+    color: #e2900b;
+    font-weight: normal;
+    font-size: 25px;
+    margin-left:30px;
+  }
+}

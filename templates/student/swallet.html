@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/swallet.css' %}" />
+    <title>RazorPay API</title>
+</head>
+
+<body>
+
+    <!-- navbar section opening -->
+    {% include 'main/navbar.html' %}
+    <!-- navbar section closing -->
+    <article class="container  mbcontainer">
+        <h1 class="main-heading">Buy Coin</h1>
+        <img src="{% static 'img/money-bill.svg' %}" class="money-bill" />
+        <h3 class="current-coin">1000</h3>
+        <p class="available-coin">Available coin</p>
+        <br />
+        <br />
+        <div class="plans">
+            <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
+            <p class="plan-text">50</p>
+            <button class="plan-button">&#8377; 10</button>
+        </div>
+        <div class="plans">
+            <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
+            <p class="plan-text">255</p>
+            <button class="plan-button">&#8377; 50</button>
+        </div>
+        <div class="plans">
+            <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
+            <p class="plan-text">520</p>
+            <button class="plan-button">&#8377; 100</button>
+        </div>
+        <div class="plans">
+            <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
+            <p class="plan-text">2600</p>
+            <button class="plan-button">&#8377; 500</button>
+        </div>
+    </article>
+            <!-- Footer Begin -->
+            {% include 'main/footer.html' %}
+            <!-- Footer End -->
+    <script src="https://kit.fontawesome.com/e655379602.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+</body>
+
+</html>

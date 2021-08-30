@@ -97,3 +97,9 @@ def student_profile(request):
         'std':std,
     }
     return render(request,'student/editprofile.html',context)
+
+
+    #Student wallet
+
+def student_wallet(request):
+    return render(request,'student/swallet.html')
