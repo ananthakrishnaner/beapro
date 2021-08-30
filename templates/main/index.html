@@ -255,10 +255,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <form>
+                                <form action="" method="POST">
+                                    {% csrf_token %}
                                     <div class="form-group">
                                         <input
-                                            type="name"
+                                            type="text"
+                                            name = "name"
+                                            value="{{user}}"
                                             class="form-control"
                                             id="exampleInputName"
                                             placeholder="Your Full Name...">
@@ -266,6 +269,8 @@
                                     <div class="form-group">
                                         <input
                                             type="email"
+                                            name = "email"
+                                            value="{{user.email}}"
                                             class="form-control"
                                             id="exampleInputEmail1"
                                             aria-describedby="emailHelp"
@@ -274,17 +279,33 @@
                                     <div class="form-group">
                                         <input
                                             type="tel"
+                                            name = "phone"
                                             class="form-control"
                                             id="exampleInputEmail1"
                                             aria-describedby="emailHelp"
                                             placeholder="Your Phone number...">
                                     </div>
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            name = "subject"
+                                            class="form-control"
+                                            id="exampleInputEmail1"
+                                            aria-describedby="emailHelp"
+                                            placeholder="Your subject ...">
+                                    </div>
                                     <!-- -->
+                                    {% if user.is_authenticated %}
+                                    <input type="hidden" name="user_id" value="{{user.id}}">
+                                    {% else %}
+                                    <input type="hidden" name="user_id" value="visitor">
+                                    {% endif %}
                                     <div class="form-group">
                                         <!-- <textarea class="form-control" aria-label="With textarea"></textarea> -->
                                         <textarea
                                             class="form-control"
                                             rows="6"
+                                            name = "message"
                                             placeholder="Your message to us"
                                             id="cf-message"
                                             name="cf-message"
