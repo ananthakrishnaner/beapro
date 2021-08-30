@@ -38,16 +38,21 @@ def account_login(request):
             return redirect('student/login.html')
         else:
             user1 = auth.authenticate(email=email,password=password)
-            std_check = StudentProfile.objects.get(id=user1.id)
-            if std_check.is_student == True:
-                if user1 is not None:
-                    auth.login(request,user1)
-                    return redirect('/')
-                else:
-                    messages.warning(request, 'Invalid Credentials')
-                    return redirect('login')
-            else:
+            if user1 is not None:
+                auth.login(request,user1)
+                user = request.user.id
+                try:
+                    student = StudentProfile.objects.get(id=user)
+                except:
+                    student = StudentProfile.objects.create(user=request.user,fullname='unknown')
+                    student.save()
+                if student.is_student == False:
+                    return redirect('logout_student')
                 return redirect('/')
+            else:
+                messages.warning(request, 'Invalid Credentials')
+                return redirect('login')
+
 
     return render(request,'student/login.html')
 

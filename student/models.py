@@ -13,7 +13,7 @@ class StudentProfile(models.Model):
     collegeName = models.CharField(max_length=60,blank=True)
     country = models.CharField(max_length=50)
     state = models.CharField(max_length=50,blank=True)
-    wallet_amount = models.IntegerField(blank=True,null=True)
+    wallet_amount = models.IntegerField(blank=True,null=True,default=10)
     is_allowed_to_publish = models.BooleanField(default=False)
     prime_user = models.BooleanField(default=False)
     is_allowd_view_blog = models.BooleanField(default=False)

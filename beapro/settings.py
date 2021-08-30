@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'beapro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beaprodb',
+        'NAME': 'beapro',
         'USER': 'postgres',
         'PASSWORD':'ak',
         'HOST':'localhost'

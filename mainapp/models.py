@@ -12,7 +12,7 @@ class ContactForm(models.Model):
     message = models.TextField(max_length=200)
     user_id = models.CharField(max_length=10,blank=True)
     created_date = models.DateTimeField(default=datetime.now,null=True)
-    date = models.DateField()
+    
 
     def __str__(self):
         return self.name
