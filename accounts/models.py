@@ -51,7 +51,8 @@ class Account(AbstractBaseUser):
     is_staff        = models.BooleanField(default=False)
     is_superuser    = models.BooleanField(default=False)
     profile_image   = models.ImageField(upload_to=get_profile_image_filepath,null=True,blank=True,default=get_default_profile_image)
-    hide_email      = models.BooleanField(default=False)
+    is_student      = models.BooleanField(default=False)
+    is_tutor     = models.BooleanField(default=False)
 
     object=MyAccoutManager()
 

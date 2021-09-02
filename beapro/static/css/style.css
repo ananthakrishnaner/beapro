@@ -32,6 +32,23 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 	padding-right:4.5rem;
 }
+/* Logo Image */
+/* .beaprologo img{
+	display: block;
+	width: 160px;
+	height: 160px;
+	margin: auto;
+} */
+
+/* footer Logo */
+/* .beaprofooterlogo img{
+	display: block;
+	width: 160px;
+	height: 160px;
+	margin: auto;
+	margin-top: -65px;
+} */
+
 .bb li {
 	margin-bottom: 5px;
 }

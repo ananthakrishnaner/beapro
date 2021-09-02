@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import Account
-from django.contrib.auth.models import AbstractUser
+from datetime import datetime
 
 # Create your models here.
 
@@ -17,7 +17,8 @@ class StudentProfile(models.Model):
     is_allowed_to_publish = models.BooleanField(default=False)
     prime_user = models.BooleanField(default=False)
     is_allowd_view_blog = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=True)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.fullname

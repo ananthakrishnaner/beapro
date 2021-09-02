@@ -82,9 +82,11 @@ body {
 }
 
 h1 {
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
     margin: 20px 0 20px;
+    margin-top: 94px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 small {

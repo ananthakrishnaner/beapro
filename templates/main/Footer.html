@@ -1,8 +1,27 @@
+{% load static %}
 <div class="bg-light">
+    <style>
+        .beaprofooterlogo img {
+            display: block;
+            width: 160px;
+            height: 160px;
+            margin: auto;
+            margin-top: -65px;
+        }
+        @media(max-width:568px) {
+        .beaprofooterlogo img {
+            display: block;
+            width: 155px;
+            height: 155px;
+            margin: auto;
+            margin-top: -65px;
+        }
+        }
+    </style>
     <div class="container py-5">
         <div class="row pt-5">
-            <div class="col-md-6 col-lg-3 mb-5">
-                <h4 class="font-weight-bold mb-4">BEAPRO</h4>
+            <div class="beaprofooterlogo">
+                <img src="{% static 'img/beaprologo.png' %}" alt="BEAPRO">
             </div>
             <div class="col-md-6 col-lg-3 mb-5">
                 <h6 class="mb-4 font-weight-bold">Blog</h6>
