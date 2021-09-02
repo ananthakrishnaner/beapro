@@ -3,6 +3,7 @@ from .models import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from datetime import datetime
 from django.utils.formats import localize
+from student.models import StudentProfile
 
 # Create your views here.
 
@@ -22,7 +23,15 @@ def index(request):
             send_mail(subject, emailmsg, email, ['beapro1377@gmail.com'])
         except BadHeaderError:
             return redirect('/')
+        return redirect('/')
     else:
-        pass
-    
-    return render(request,'main/index.html')
+        try:
+            if request.user.is_student:
+                user = request.user.id
+                student = StudentProfile.objects.get(id=user)
+                data = {'student':student}
+                return render(request,'main/index.html',data)
+            else:
+                return render(request,'main/index.html')
+        except:
+            return render(request,'main/index.html')

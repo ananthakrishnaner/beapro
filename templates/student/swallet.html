@@ -19,7 +19,7 @@
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/swallet.css' %}" />
-    <title>RazorPay API</title>
+    <title>{{user}} Wallet</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
     <article class="container  mbcontainer">
         <h1 class="main-heading">Buy Coin</h1>
         <img src="{% static 'img/money-bill.svg' %}" class="money-bill" />
-        <h3 class="current-coin">1000</h3>
+        <h3 class="current-coin">{{student.wallet_amount}}</h3>
         <p class="available-coin">Available coin</p>
         <br />
         <br />

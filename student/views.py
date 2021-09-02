@@ -62,7 +62,6 @@ def logout_student(request):
 def student_profile(request):
     try:
         user = request.user.id
-        user = request.user.id
         student = StudentProfile.objects.get(id=user)
         if request.method == 'POST':
             u_form = UserProfileForm(request.POST,
@@ -91,4 +90,9 @@ def student_profile(request):
     #Student wallet
 
 def student_wallet(request):
-    return render(request,'student/swallet.html')
+    user = request.user.id
+    student = StudentProfile.objects.get(id=user)
+    data = {
+        'student':student
+    }
+    return render(request,'student/swallet.html',data)
