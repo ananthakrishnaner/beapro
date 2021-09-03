@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractBaseUser, AbstractUser,BaseUserMa
 
 class MyAccoutManager(BaseUserManager):
 
-    def create_user(self,email,username,password=None):
+    def create_user(self,email,username,password=None,tutor=False,student=False):
         if not email:
             raise ValueError("Users must have  an email")
         if not username:
@@ -17,6 +17,8 @@ class MyAccoutManager(BaseUserManager):
             username=username,
         )
         user.set_password(password)
+        user.is_student = student
+        user.is_tutor = tutor
         user.save(using=self._db)
         return user
 

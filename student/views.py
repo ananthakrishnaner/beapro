@@ -22,10 +22,8 @@ def account_signup(request):
                 return redirect('/')
             else:
                 
-                user = Account.object.create_user(username=username,email=email ,password=password)
-                user.is_student = True
+                user = Account.object.create_user(username=username,email=email ,password=password,tutor=False,student=True)
                 user.save()
-
                 messages.success(request, 'Account created successfully')
                 return redirect('student_account_login')
     return render(request,'student/login.html')
@@ -37,7 +35,7 @@ def account_login(request):
         password = request.POST['password']
         if len(password) > 50:
             messages.warning(request, 'Detected malicious Attempt :(')
-            return redirect('student/login.html')
+            return redirect('student_account_login')
         else:
             user1 = auth.authenticate(email=email,password=password)
             if user1 is not None:
@@ -45,7 +43,7 @@ def account_login(request):
                 return redirect('/')
             else:
                 messages.warning(request, 'Invalid Credentials')
-                return redirect('login')
+                return redirect('student_account_login')
 
 
     return render(request,'student/login.html')
