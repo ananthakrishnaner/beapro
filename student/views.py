@@ -59,8 +59,8 @@ def logout_student(request):
 
 def student_profile(request):
     try:
-        user = request.user.id
-        student = StudentProfile.objects.get(id=user)
+        user = request.user
+        student = StudentProfile.objects.get(user=user)
         if request.method == 'POST':
             u_form = UserProfileForm(request.POST,
                                     request.FILES,
@@ -82,14 +82,15 @@ def student_profile(request):
         return render(request,'student/editprofile.html',context)
 
     except StudentProfile.DoesNotExist:
+        print('no user')
         return redirect('student_account_login')
 
 
     #Student wallet
 
 def student_wallet(request):
-    user = request.user.id
-    student = StudentProfile.objects.get(id=user)
+    user = request.user
+    student = StudentProfile.objects.get(user=user)
     data = {
         'student':student
     }

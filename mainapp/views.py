@@ -27,8 +27,8 @@ def index(request):
     else:
         try:
             if request.user.is_student:
-                user = request.user.id
-                student = StudentProfile.objects.get(id=user)
+                user = request.user
+                student = StudentProfile.objects.get(user=user)
                 data = {'student':student}
                 return render(request,'main/index.html',data)
             else:
