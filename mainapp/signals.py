@@ -8,7 +8,7 @@ from accounts.models import Account
 @receiver(post_save,sender=Account)
 def create_profile(sender,instance,created,**kwargs):
     if created:
-        profile =  Account.object.get(username=instance)
+        profile =  Account.objects.get(username=instance)
         if profile.is_student:
             StudentProfile.objects.create(user=instance,fullname="UnknownStudent")
         else:

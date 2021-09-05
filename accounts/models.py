@@ -56,7 +56,7 @@ class Account(AbstractBaseUser):
     is_student      = models.BooleanField(default=False)
     is_tutor     = models.BooleanField(default=False)
 
-    object=MyAccoutManager()
+    objects=MyAccoutManager()
 
     USERNAME_FIELD  = 'email'
     REQUIRED_FIELDS = ['username']

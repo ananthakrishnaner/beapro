@@ -12,16 +12,16 @@ def account_signup(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        if Account.object.filter(username=username).exists():
+        if Account.objects.filter(username=username).exists():
             messages.warning(request, 'Username already exist')
             return redirect('/')
         else:
-            if Account.object.filter(email=email).exists():
+            if Account.objects.filter(email=email).exists():
                 messages.warning(request, 'Email already exist')
                 return redirect('/')
             else:
                 
-                user = Account.object.create_user(username=username,email=email ,password=password,tutor=True,student=False)
+                user = Account.objects.create_user(username=username,email=email ,password=password,tutor=True,student=False)
                 user.save()
 
                 messages.success(request, 'Account created successfully')
