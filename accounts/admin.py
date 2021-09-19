@@ -9,11 +9,12 @@ class AccountAdmmin(UserAdmin):
     def profile_photo(self, objects):
         return format_html('<img src="{}" width="40"/>'.format(objects.profile_image.url))
 
-    list_display = ('email','username','profile_photo','date_joined','last_login','is_admin','is_staff')
+    list_display = ('profile_photo','email','username','date_joined','last_login','is_tutor','is_student')
     search_fields = ('email','username')
     readonly_fields = ('id','date_joined','last_login')
     filter_horizontal = ()
-    list_filter =()
+    list_display_links = ('email','username')
+    list_filter =('is_admin','is_tutor','is_student')
     fieldsets = ()
 
 

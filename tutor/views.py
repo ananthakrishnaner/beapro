@@ -55,3 +55,8 @@ def account_login(request):
 def logout_tutor(request):
     logout(request)
     return redirect('tutor_account_login')
+
+
+#Tutor Profile
+def tutor_profile(request):
+    return render(request,'tutor/tutoreditprofile.html')

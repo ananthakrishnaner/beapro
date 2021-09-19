@@ -58,9 +58,11 @@ def logout_student(request):
 # Edit Profile
 
 def student_profile(request):
+    
     try:
         user = request.user
         student = StudentProfile.objects.get(user=user)
+        account_verified = StudentProfile.objects.filter(user=user,account_verified=True)
         if request.method == 'POST':
             u_form = UserProfileForm(request.POST,
                                     request.FILES,
@@ -78,6 +80,7 @@ def student_profile(request):
             'u_form':u_form,
             's_form':s_form,
             'student':student,
+            'account_verified':account_verified,
         }
         return render(request,'student/editprofile.html',context)
 

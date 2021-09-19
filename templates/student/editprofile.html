@@ -53,7 +53,10 @@
                             <div class="containers">
                                 <form action="" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    <h1>{{user.username}}
+                                    <h1>{{user.username}} 
+                                        {% if account_verified %}
+                                        <i class="fas fa-check-circle"></i>
+                                        {% endif %}
                                         <small></small>
                                     </h1>
                                     <div class="avatar-upload">
