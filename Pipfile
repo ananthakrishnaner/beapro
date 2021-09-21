@@ -9,6 +9,7 @@ python-decouple = "*"
 psycopg2 = "*"
 django-role-permissions = "*"
 pillow = "*"
+django-crispy-forms = "==1.9.2"
 
 [dev-packages]
 

@@ -9,6 +9,7 @@ urlpatterns = [
     path('',include('mainapp.urls')),
     path('student/',include('student.urls')),
     path('tutor/',include('tutor.urls')),
+    path('blog/', include('blogapp.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

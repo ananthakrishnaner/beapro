@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'mainapp',
     'student',
     'tutor',
+    'blogapp',
+
+    'crispy_forms',    
     
 
 ]
@@ -93,7 +96,7 @@ WSGI_APPLICATION = 'beapro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beapro',
+        'NAME': 'beaprodb',
         'USER': 'postgres',
         'PASSWORD':'ak',
         'HOST':'localhost'
