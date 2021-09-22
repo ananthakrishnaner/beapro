@@ -28,7 +28,7 @@
     {% include 'main/navbar.html' %}
     <!-- navbar section closing -->
     <article class="container  mbcontainer">
-        <h1 class="main-heading">Buy Coin</h1>
+        <h1 class="main-heading">Subscribe</h1>
         <img src="{% static 'img/money-bill.svg' %}" class="money-bill" />
         <h3 class="current-coin">{{student.wallet_amount}}</h3>
         <p class="available-coin">Available coin</p>
@@ -36,25 +36,59 @@
         <br />
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
-            <p class="plan-text">50</p>
-            <button class="plan-button">&#8377; 10</button>
+            <p class="plan-text">100 (10 D)</p>
+            <button class="plan-button">&#8377; 20</button>
         </div>
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
-            <p class="plan-text">255</p>
-            <button class="plan-button">&#8377; 50</button>
+            <p class="plan-text">300 (30 D)</p>
+            <button class="plan-button">&#8377; 55</button>
         </div>
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
-            <p class="plan-text">520</p>
-            <button class="plan-button">&#8377; 100</button>
+            <p class="plan-text">900 (90 D)</p>
+            <button class="plan-button">&#8377; 160</button>
         </div>
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
-            <p class="plan-text">2600</p>
-            <button class="plan-button">&#8377; 500</button>
+            <p class="plan-text">1800 (180 D)</p>
+            <button class="plan-button">&#8377; 320</button>
         </div>
     </article>
+
+    <!-- Table Begin -->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Reference No</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date&Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>4564565456</td>
+            <td>55</td>
+            <td>1 july 2020</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+<!-- Table ending -->
+
             <!-- Footer Begin -->
             {% include 'main/footer.html' %}
             <!-- Footer End -->

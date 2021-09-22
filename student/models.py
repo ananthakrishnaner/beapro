@@ -17,7 +17,7 @@ class StudentProfile(models.Model):
     is_allowed_to_publish = models.BooleanField(default=False)
     prime_user = models.BooleanField(default=False)
     account_verified = models.BooleanField(default=False)
-    is_allowd_view_blog = models.BooleanField(default=False)
+    is_allowd_view_blog = models.BooleanField(default=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 

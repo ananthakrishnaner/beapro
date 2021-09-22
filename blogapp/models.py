@@ -6,6 +6,7 @@ from django.shortcuts import reverse
 
 
 class Category(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128)
     def __str__(self):
         return self.name
@@ -13,6 +14,7 @@ class Category(models.Model):
         verbose_name_plural = "categories"
 
 class Post(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     author = models.ForeignKey(Account, on_delete=models.CASCADE)
     body = models.TextField(blank=True)
@@ -30,6 +32,7 @@ class Post(models.Model):
 
 
 class PostLiked(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.ForeignKey(Account, on_delete=models.CASCADE)
     post_id = models.CharField(max_length=(5),blank=True)
 
@@ -37,6 +40,7 @@ class PostLiked(models.Model):
     
 
 class Comment(models.Model):
+    id = models.AutoField(primary_key=True)
     body = models.TextField()
     author = models.CharField(max_length=128)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
