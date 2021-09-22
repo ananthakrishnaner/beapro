@@ -1,8 +1,9 @@
+from tutor.models import TutorProfile
 from django.shortcuts import render, redirect
 from django.contrib import messages,auth
 from django.contrib.auth import logout
-
 from accounts.models import Account
+from .forms import UserProfileForm,TutorUpdateForm
 
 
 
@@ -59,4 +60,31 @@ def logout_tutor(request):
 
 #Tutor Profile
 def tutor_profile(request):
-    return render(request,'tutor/tutoreditprofile.html')
+    try:
+        user = request.user
+        tutor = TutorProfile.objects.get(user=user)
+        account_verified = TutorProfile.objects.filter(user=user,verified=True).exists()
+        if request.method == 'POST':
+            u_form = UserProfileForm(request.POST,
+                                    request.FILES,
+                                    instance=request.user)
+            t_form = TutorUpdateForm(request.POST,request.FILES,instance=tutor)
+            if u_form.is_valid() and t_form.is_valid():
+                u_form.save()
+                t_form.save()
+                return redirect('/')
+        else:
+            u_form = UserProfileForm(instance=request.user)
+            t_form = TutorUpdateForm(instance=tutor)        
+
+        context = {
+            'u_form':u_form,
+            't_form':t_form,
+            'tutor':tutor,
+            'account_verified':account_verified,
+        }
+        return render(request,'tutor/tutoreditprofile.html',context)
+
+    except TutorProfile.DoesNotExist:
+        print('no user')
+        return redirect('tutor_account_login')

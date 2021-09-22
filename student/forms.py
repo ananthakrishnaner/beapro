@@ -34,9 +34,9 @@ class StudentUpdateForm(forms.ModelForm):
                 'placeholder' : 'Enter Mobile Number',
                 'maxlength' :10,
             }))
-    Interest = forms.CharField(widget=forms.TextInput(attrs={
+    Address = forms.CharField(widget=forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder' : 'Interested in...',
+                'placeholder' : 'Enter your Address',
                 'maxlength' :30,
             }))
     birth_date = forms.DateField(widget=forms.DateInput(attrs={
