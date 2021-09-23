@@ -24,45 +24,16 @@ class UserProfileForm(forms.ModelForm):
 
 
 class StudentUpdateForm(forms.ModelForm):
-    fullname = forms.CharField(widget=forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder' : 'Enter Full Name',
-                'maxlength' :30,
-            }))
-    mobile = forms.CharField(widget=forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder' : 'Enter Mobile Number',
-                'maxlength' :10,
-            }))
-    Address = forms.CharField(widget=forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder' : 'Enter your Address',
-                'maxlength' :30,
-            }))
-    birth_date = forms.DateField(widget=forms.DateInput(attrs={
-                'class': 'form-control',
-                'type' : 'date',
-                'placeholder' : 'dd/mm/yyyy',
-                
-            }))
-    collegeName = forms.CharField(widget=forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder' : 'Name',
-                'maxlength' :30,
-            }))
-    country = forms.CharField(widget=forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder' : 'Country',
-                'maxlength' :30,
-            }))
-    state = forms.CharField(widget=forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder' : 'State',
-                'maxlength' :30,
-            }))
     class Meta:
         model = StudentProfile
         fields = ['fullname','mobile','Interest','birth_date','collegeName','country','state']
 
-
-
+        widgets = {
+            'fullname':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Full Name'}),
+            'mobile':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter mobile number ..'}),
+            'Interest':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Interest'}),
+            'birth_date':forms.DateInput(attrs={'class': 'form-control','placeholder' : 'dd/mm/yyyy','type':'date' }),
+            'collegeName':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Name',}),
+            'country':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Your Country',}),
+            'state':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Your State',}),
+        }

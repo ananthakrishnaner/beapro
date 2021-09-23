@@ -43,8 +43,8 @@ class TutorUpdateForm(forms.ModelForm):
             'individual':forms.CheckboxInput(attrs={'class':'form-check-input','id':'flexCheckDefault'}),
             'group':forms.CheckboxInput(attrs={'class':'form-check-input','id':'flexCheckDefault'}),
             'class_will_be_held_on':forms.RadioSelect(attrs={'class':'form-check-input','id':'inlineRadio1'}),
-            'your_cv':forms.FileInput(),
+            'your_cv':forms.FileInput(attrs={}),
             'qualification':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Highest Qualification'}),
-            'qualification_cert':forms.FileInput(),
+            'qualification_cert':forms.FileInput(attrs={}),
             'amount':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Amount Per Hour'}),
         }

@@ -15,11 +15,11 @@ def account_signup(request):
         password = request.POST['password']
         if Account.objects.filter(username=username).exists():
             messages.warning(request, 'Username already exist')
-            return redirect('/')
+            return redirect('student_account_login')
         else:
             if Account.objects.filter(email=email).exists():
                 messages.warning(request, 'Email already exist')
-                return redirect('/')
+                return redirect('student_account_login')
             else:
                 
                 user = Account.objects.create_user(username=username,email=email ,password=password,tutor=False,student=True)
@@ -71,7 +71,11 @@ def student_profile(request):
             if u_form.is_valid() and s_form.is_valid():
                 u_form.save()
                 s_form.save()
-                return redirect('/')
+                messages.success(request, 'Account Updated')
+                return redirect('student_profile')
+            else:
+                messages.warning(request, 'Somethng went wrong :(')
+                return redirect('student_profile')
         else:
             u_form = UserProfileForm(instance=request.user)
             s_form = StudentUpdateForm(instance=student)        

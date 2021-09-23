@@ -15,11 +15,11 @@ def account_signup(request):
         password = request.POST['password']
         if Account.objects.filter(username=username).exists():
             messages.warning(request, 'Username already exist')
-            return redirect('/')
+            return redirect('tutor_account_login')
         else:
             if Account.objects.filter(email=email).exists():
                 messages.warning(request, 'Email already exist')
-                return redirect('/')
+                return redirect('tutor_account_login')
             else:
                 
                 user = Account.objects.create_user(username=username,email=email ,password=password,tutor=True,student=False)
