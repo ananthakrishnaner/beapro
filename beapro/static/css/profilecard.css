@@ -1,3 +1,10 @@
+#textc{
+  text-decoration: none;
+}
+#textc:hover{
+  text-decoration: none;
+  color: #ffc107;
+}
 .cards-list {
     z-index: 0;
     width: 100%;

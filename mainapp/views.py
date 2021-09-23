@@ -3,8 +3,11 @@ from .models import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from datetime import datetime
 from django.utils.formats import localize
+from django.shortcuts import get_object_or_404
+
 from student.models import StudentProfile
 from tutor.models import TutorProfile
+
 
 # Create your views here.
 
@@ -37,6 +40,7 @@ def index(request):
         except:
             return render(request,'main/index.html')
 
+
 def tutorprofiles(request):
     if request.user.is_student:
         tutorprofile = TutorProfile.objects.all()
@@ -45,3 +49,11 @@ def tutorprofiles(request):
         'tutorprofile':tutorprofile,
         }
     return render(request,'main/profilecard.html',data)
+
+
+def viewprofile(request,id):
+    tutorprofile =  get_object_or_404(TutorProfile, pk=id)
+    data ={
+        'tutorprofile':tutorprofile,
+    }
+    return render(request,'main/viewprofile.html',data)

@@ -1,7 +1,9 @@
 from django.urls import path,include
-from .views import  index,tutorprofiles
+from .views import  index,tutorprofiles,viewprofile
 
 urlpatterns = [
     path('',index, name="index"),
-    path('t',tutorprofiles, name="tutorprofiles"),
+    path('tutorprofiles',tutorprofiles, name="tutorprofiles"),
+    path('tutorprofiles/<int:id>',viewprofile, name="viewprofile"),
+
 ]
