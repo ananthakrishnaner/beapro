@@ -33,7 +33,12 @@ def index(request):
             if request.user.is_student:
                 user = request.user
                 student = StudentProfile.objects.get(user=user)
-                data = {'student':student}
+                featuredtutor = TutorProfile.objects.filter(featured=True)
+                data = {
+                    'student':student,
+                    'featuredtutor':featuredtutor,
+                    
+                    }
                 return render(request,'main/index.html',data)
             else:
                 return render(request,'main/index.html')

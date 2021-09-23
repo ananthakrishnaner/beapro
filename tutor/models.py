@@ -33,8 +33,8 @@ class TutorProfile(models.Model):
     collegeName = models.CharField(max_length=60,blank=True)
     country = models.CharField(max_length=50)
     state = models.CharField(max_length=50,blank=True)
-    about_me = models.TextField(max_length=300)
-    experience = models.TextField(max_length=300)
+    about_me = models.TextField(max_length=700)
+    experience = models.TextField(max_length=700)
     subject = models.CharField( choices=subject_choices, max_length=20,null=True, default=None)
     individual = models.BooleanField(default=False)
     group = models.BooleanField(default=False)
@@ -45,6 +45,7 @@ class TutorProfile(models.Model):
     social_profile = models.URLField(max_length=300,blank=True)
     promo_video = models.FileField(upload_to='tutor/documents/promo_video/%Y-%m-%d',blank=True)
     amount = models.IntegerField(default=100)
+    featured = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
 
     def __str__(self):

@@ -162,6 +162,7 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <!-- <h6 class="text-warning mb-3">03. Our Tutor</h6> -->
+                    {% if user.is_authenticated %}
                             <h2 class="font-weight-bold mb-5 pb-3">Our Top Tutors
                             </h2>
                         </div>
@@ -170,70 +171,23 @@
                     <!-- Top tutor section -->
                     <div class="row testimonials owl-theme owl-carousel">
                         <!-- Tutor 1 -->
+                    
+                        {% for featured in featuredtutor %}
                         <div class="p-5">
                             <div class="d-flex align-items-end mb-5">
                                 <div class="img-radius">
-                                    <img src="./img/exampleimg/baby_1.jpg">
+                                    <img src="{{featured.user.profile_image.url}}">
                                 </div>
                                 <div class="ml-3"><img
                                     src="https://annedece.sirv.com/Images/5e5fd7c602ca7c29a9feb660_quote-icon.svg">
                                 </div>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at risus ac quam
-                                vulputate congue vitae et neque. Pellentesque non justo velit. Donec quis tempus
-                                mi.</p>
-                            <h5 class="font-weight-bold">Ashil</h5>
-                            <p>Guitar</p>
+                            <p>{{featured.about_me}}</p>
+                            <h5 class="font-weight-bold">{{featured.fullname}}</h5>
+                            <p>{{featured.subject}}</p>
                         </div>
-
-                        <!-- Tutor 2 -->
-                        <div class="p-5">
-                            <div class="d-flex align-items-end mb-5">
-                                <div class="img-radius">
-                                    <img src="./img/exampleimg/baby_1.jpg">
-                                </div>
-                                <div class="ml-3"><img
-                                    src="https://annedece.sirv.com/Images/5e5fd7c602ca7c29a9feb660_quote-icon.svg">
-                                </div>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at risus ac quam
-                                vulputate congue vitae et neque. Pellentesque non justo velit. Donec quis tempus
-                                mi.</p>
-                            <h5 class="font-weight-bold">Ashil</h5>
-                            <p>Guitar</p>
-                        </div>
-                        <!-- Tutor 3 -->
-                        <div class="p-5">
-                            <div class="d-flex align-items-end mb-5">
-                                <div class="img-radius">
-                                    <img src="./img/exampleimg/baby_1.jpg">
-                                </div>
-                                <div class="ml-3"><img
-                                    src="https://annedece.sirv.com/Images/5e5fd7c602ca7c29a9feb660_quote-icon.svg">
-                                </div>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at risus ac quam
-                                vulputate congue vitae et neque. Pellentesque non justo velit. Donec quis tempus
-                                mi.</p>
-                            <h5 class="font-weight-bold">Ashil</h5>
-                            <p>Guitar</p>
-                        </div>
-                        <!-- Tutor 4 -->
-                        <div class="p-5">
-                            <div class="d-flex align-items-end mb-5">
-                                <div class="img-radius">
-                                    <img src="./img/exampleimg/baby_1.jpg">
-                                </div>
-                                <div class="ml-3"><img
-                                    src="https://annedece.sirv.com/Images/5e5fd7c602ca7c29a9feb660_quote-icon.svg">
-                                </div>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at risus ac quam
-                                vulputate congue vitae et neque. Pellentesque non justo velit. Donec quis tempus
-                                mi.</p>
-                            <h5 class="font-weight-bold">Ashil</h5>
-                            <p>Guitar</p>
-                        </div>
+                        {% endfor %}
+                    {% endif %}
                     </div>
                     <!-- End of Top tutor section -->
                     <div class="shape-four"></div>
