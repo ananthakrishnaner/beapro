@@ -26,7 +26,7 @@ class TutorUpdateForm(forms.ModelForm):
         model = TutorProfile
         fields = ('fullname','mobile','address','birth_date','collegeName','country','state','about_me',
         'experience','subject','individual','group','class_will_be_held_on','your_cv','qualification',
-        'qualification_cert','amount'
+        'qualification_cert','promo_video','amount'
         )
 
         widgets = {
@@ -46,5 +46,6 @@ class TutorUpdateForm(forms.ModelForm):
             'your_cv':forms.FileInput(attrs={}),
             'qualification':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Highest Qualification'}),
             'qualification_cert':forms.FileInput(attrs={}),
+            'promo_video':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Copy Paste The Youtube video Link ..'}),
             'amount':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Amount Per Hour'}),
         }

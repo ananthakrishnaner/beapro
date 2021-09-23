@@ -93,8 +93,7 @@ def student_profile(request):
         return redirect('student_account_login')
 
 
-    #Student wallet
-
+#Student wallet
 def student_wallet(request):
     user = request.user
     student = StudentProfile.objects.get(user=user)
@@ -102,3 +101,4 @@ def student_wallet(request):
         'student':student
     }
     return render(request,'student/swallet.html',data)
+

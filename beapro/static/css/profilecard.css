@@ -1,331 +1,81 @@
-/* profile card */
-
-
-/* Just basic CSS Reset code */
-
-* {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-}
-
-.dropdown-menu {
-    overflow: hidden;
-}
-
-body,
-html {
-    height: 100%;
-}
-
-body {
-    font-family: 'Muli', sans-serif;
-    /* font-size: 13px; */
-    line-height: 1.4em;
-    color: #978CA8;
-    background-color: #fff;
-    background-image: url('https://i.imgur.com/NtNohyw.png');
-}
-
-img {
-    height: auto;
-    max-width: 100%;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #231A3B;
-}
-
-.site {
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: 40px;
-}
-
-
-/* The parent has the "display: grid;" property and it defines the template areas */
-
-.profile-card {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 110px 1fr;
-    grid-template-areas: "pc-project-1 pc-project-2 pc-project-3 pc-project-4" "pc-user pc-user pc-user pc-user-buttons";
-    max-width: 580px;
-    margin-bottom: 40px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 50px rgb(63 57 71 / 15%);
-}
-
-.pc-project {
-    overflow: hidden;
-    position: relative;
-    height: 150px;
-}
-
-img.varified {
-    width: 20px;
-}
-
-
-/* We define "grid-area" names for the direct child of the grid parent */
-
-.pc-project-1 {
-    grid-area: pc-project-1;
-    border-radius: 6px 0 0 0;
-}
-
-.pc-project-2 {
-    grid-area: pc-project-2;
-}
-
-.pc-project-3 {
-    grid-area: pc-project-3;
-}
-
-.pc-project-4 {
-    grid-area: pc-project-4;
-    border-radius: 0 6px 0 0;
-}
-
-
-/* Project thumbnails styling */
-
-.pc-project-link {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center center;
-    transition: all .4s ease-in-out;
-}
-
-.pc-project:hover .pc-project-link {
-    transform: scale(1.14);
-}
-
-.pc-project:hover .pc-project-overlay {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0%);
-}
-
-.pc-project-overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(40, 27, 64, 0.6);
-    /*opacity: 0;
-	visibility: hidden;*/
-    transform: translateY(-100%);
-    transition: transform .3s cubic-bezier(.8, 0, .5, 1.05);
-}
-
-.pc-project-overlay-link {
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: #E5DFEF;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(259, 253, 239, 0.15);
-    transition: background .2s ease-in-out;
-}
-
-.pc-project-overlay-link:hover {
-    background: #fff;
-}
-
-.pc-project-overlay-link svg {
-    width: 18px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
-/* Direct child of the grid parent. Again we define the name of the "grid-area" porperty */
-
-.pc-user {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-area: pc-user;
-}
-
-.pc-user-image {
-    padding: 18px 26px 18px 18px;
-    position: relative;
-}
-
-.pc-user-image:before {
-    content: '';
-    position: absolute;
-    top: 25px;
-    left: 76px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #3fc6a8;
-    border: 4px solid #fff;
-}
-
-.pc-user-image svg {
-    border-radius: 50%;
+.cards-list {
+    z-index: 0;
     width: 100%;
-    padding-top: 50px;
-    ;
-}
-
-.pc-user-info {
-    padding: 59px 20px 20px 0;
-}
-
-.pc-user-info>h3 {
-    font-size: 24px;
-    line-height: 1.3em;
-    margin-bottom: 6px;
-}
-
-.pc-user-info>h3 a {
-    color: #241943;
-    text-decoration: none;
-    transition: color .3s ease-in-out;
-}
-
-.pc-user-info>h3 a:hover {
-    color: #432F7A;
-}
-
-.pc-user-title {
-    margin-bottom: 3px;
-}
-
-.pc-user-location {
-    margin-bottom: 20px;
-}
-
-.pc-user-location svg {
-    width: 9px;
-    margin-right: 5px;
-    opacity: 0.4;
-}
-
-.pc-social {
-    list-style-type: none;
     display: flex;
-}
-
-.pc-social li+li {
-    margin-left: 15px;
-}
-
-.pc-social li svg {
-    max-width: 22px;
-    position: relative;
-    opacity: 0.5;
-    transition: opacity .2s ease-in-out;
-}
-
-.pc-social li a:hover svg {
-    opacity: 1;
-}
-
-
-/* Again >> direct child of the grid parent. We define the "grid-area" name */
-
-.pc-user-buttons {
-    grid-area: pc-user-buttons;
-    padding: 9px;
-    position: relative;
-    top: 4.1rem;
-}
-
-.pc-user-buttons .pc-btn {
-    display: block;
-    padding: 6px 20px;
-    font-size: 13px;
-    font-weight: 600;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+  box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  
+  .card .card_image {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+  }
+  
+  .card .card_image img {
+    width: inherit;
+    height: inherit;
+    border-radius: 40px;
+    object-fit: cover;
+  }
+  
+  .card .card_title {
     text-align: center;
-    text-decoration: none;
-    border-radius: 50px;
-    border: 1px solid #E5DFEF;
-    color: #231A3B;
-    transition: background .2s ease-in-out;
-}
+    border-radius: 0px 0px 40px 40px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: -80px;
+    height: 40px;
+  }
+  
+  .card:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+      -5px -5px 30px 15px rgba(0,0,0,0.22);
+  }
+  
+  .title-white {
+    color: white;
+  }
+  
+  .title-black {
+    color: black;
+  }
+  .verify-green{
+      color: green;
+  }
 
-.pc-user-buttons .orenge {
-    background-color: #f8a407;
-}
-
-.pc-user-buttons .pc-btn:hover {
-    background: #E5DFEF;
-}
-
-.pc-user-buttons .pc-btn.accent {
-    border-color: #4F3FF1;
-    background: #4F3FF1;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(80, 60, 240, 0.2);
-}
-
-.pc-user-buttons .pc-btn.accent:hover {
-    background: #483AD7;
-}
-
-.pc-user-buttons .pc-btn+.pc-btn {
-    margin-top: 12px;
-}
-
-
-/* Responsive styling */
-
-@media only screen and (max-width: 1024px) {
-    .site {
-        padding: 60px;
-        margin: 0;
+  @media all and (max-width: 500px) {
+    .card-list {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
     }
-}
-
-@media only screen and (max-width: 767px) {
-    .site {
-        display: grid;
-        grid-template-columns: 1fr;
-        padding: 25px;
-        margin: 0%;
-    }
-    /* Here we define new columns and rows template. Then we rearrange the "grid-area" to match our needs. */
-    .profile-card {
-        margin: 0%;
-        height: 50vh;
-        margin-bottom: 20px;
-    }
-    .pc-project-2 {
-        border-radius: 0 6px 0 0;
-    }
-    .pc-project-4 {
-        border-radius: 0;
-    }
-    .pc-user-image {
-        padding: 0px 2px;
-    }
-    .pc-user-info {
-        padding: 50px 0px;
-    }
-    .pc-user-buttons {
-        padding: 10px;
-    }
-}
+  }
+  
+  
+  /*
+  .card {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 40px;
+    background-image: url('https://i.redd.it/b3esnz5ra34y.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+  box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    transition: 0.4s;
+  }
+  */

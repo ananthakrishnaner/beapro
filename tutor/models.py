@@ -42,6 +42,7 @@ class TutorProfile(models.Model):
     your_cv = models.FileField(upload_to='tutor/documents/cv/%Y-%m-%d')
     qualification = models.CharField(max_length=35)
     qualification_cert = models.FileField(upload_to='tutor/documents/edu/%Y-%m-%d')
+    promo_video = models.URLField(max_length=300)
     amount = models.IntegerField(default=100)
     verified = models.BooleanField(default=False)
 
