@@ -20,6 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link active" href="{% url 'blog:MainView' %}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="{% url 'index' %}">MainHome<span class="sr-only">(current)</span></a>
             {% if user.is_superuser %}
             <a class="nav-link active" href="{% url 'admin:index' %}">Admin Page <span class="sr-only">(current)</span></a>
             {% endif %}

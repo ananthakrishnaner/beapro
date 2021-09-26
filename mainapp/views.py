@@ -49,11 +49,27 @@ def index(request):
 def tutorprofiles(request):
     if request.user.is_student:
         tutorprofile = TutorProfile.objects.all()
+        if 'category' in request.GET:
+            category = request.GET['category']
+            if category != 'All':
+                tutorprofile = TutorProfile.objects.filter(subject__iexact=category)
+            else:
+                tutorprofile = TutorProfile.objects.all()
+            
+            data ={
+                'tutorprofile':tutorprofile,
+             }
+            return render(request,'main/profilecard.html',data)
+        else:
+            tutorprofile = TutorProfile.objects.all()     
+            data ={
+                'tutorprofile':tutorprofile,
+            }
+            return render(request,'main/profilecard.html',data)
+    else:
+        return redirect('index')
 
-    data ={
-        'tutorprofile':tutorprofile,
-        }
-    return render(request,'main/profilecard.html',data)
+
 
 
 def viewprofile(request,id):
