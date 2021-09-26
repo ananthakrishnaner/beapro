@@ -1,4 +1,6 @@
+from django.contrib.auth.models import AnonymousUser
 from django.db import models
+from django.db.models.expressions import F
 from accounts.models import Account
 from datetime import datetime
 
@@ -23,3 +25,12 @@ class StudentProfile(models.Model):
 
     def __str__(self):
         return self.fullname
+
+class StudentTransaction(models.Model):
+    fullname = models.CharField(max_length=30,blank=True)
+    amount = models.CharField(max_length=30,blank=True)
+    order_id = models.CharField(max_length=130,blank=True)
+    payment_id = models.CharField(max_length=130,blank=True)
+    paid = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+

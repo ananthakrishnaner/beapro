@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import account_signup,account_login,logout_student,student_profile,student_wallet
+from .views import account_signup,account_login,logout_student,student_profile,student_wallet,payment_status
 
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
 
     path('profile/',student_profile, name="student_profile"),
     path('wallet/',student_wallet, name="student_wallet"),
+    path('wallet/payment-status/', payment_status, name='payment-status')
 ]

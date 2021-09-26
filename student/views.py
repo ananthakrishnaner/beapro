@@ -3,9 +3,13 @@ from django.shortcuts import render, redirect
 from accounts.models import Account
 from django.contrib import messages,auth
 from django.contrib.auth import logout
-from .models import StudentProfile
+from .models import StudentProfile,StudentTransaction
 from .forms import UserProfileForm,StudentUpdateForm
 from .decorators import prime_user
+import razorpay
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseBadRequest
 
 #create student account
 def account_signup(request):
@@ -93,12 +97,54 @@ def student_profile(request):
         return redirect('student_account_login')
 
 
+# authorize razorpay client with API Keys.
+razorpay_client = razorpay.Client(
+    auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
+
+
 #Student wallet
 def student_wallet(request):
     user = request.user
     student = StudentProfile.objects.get(user=user)
-    data = {
-        'student':student
-    }
-    return render(request,'student/swallet.html',data)
+    currency = 'INR'
+    if request.method == 'POST':
+        name = student.fullname
+        amount = request.POST['amount']
+        razorpay_order = razorpay_client.order.create(dict(amount=amount,currency=currency,payment_capture='0'))
+        razorpay_order_id = razorpay_order['id']
+        order_status = razorpay_order['status']
+        if order_status == 'created':
+            beapro_payment = StudentTransaction(
+                fullname=name,
+                amount=amount,
+                order_id=razorpay_order_id
+            )
+            beapro_payment.save()
+
+        callback_url = 'student'
+        context = {}
+        context['razorpay_order_id'] = razorpay_order_id
+        context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
+        context['razorpay_amount'] = amount
+        context['currency'] = currency
+        context['callback_url'] = callback_url
+        context['name'] = name
+        return render(request,'student/swallet.html',context=context)
+    else:
+        amount =1
+        data = {
+            'student':student,
+            'currency':currency,
+        }
+        return render(request,'student/swallet.html',data)
+
+
+# we need to csrf_exempt this url as
+# POST request will be made by Razorpay
+# and it won't have the csrf token.
+@csrf_exempt
+def payment_status(request):
+    response = request.POST
+    print(response)
+    return render(request,'student/payment-success.html',{'status': True})
 

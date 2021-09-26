@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'beapro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beapro',
+        'NAME': 'beaprodb',
         'USER': 'postgres',
         'PASSWORD':'ak',
         'HOST':'localhost'
@@ -158,4 +158,9 @@ EMAIL_PORT =config('EMAIL_PORT')
 EMAIL_USE_TLS =config('EMAIL_USE_TLS', default=True, cast=bool)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+
+#Payment
+RAZOR_KEY_ID = config('RAZOR_KEY_ID')
+RAZOR_KEY_SECRET = config('RAZOR_KEY_SECRET')
 
