@@ -43,8 +43,9 @@ class TutorProfile(models.Model):
     qualification = models.CharField(max_length=35)
     qualification_cert = models.FileField(upload_to='tutor/documents/edu/%Y-%m-%d',blank=True)
     social_profile = models.URLField(max_length=300,blank=True)
-    promo_video = models.FileField(upload_to='tutor/documents/promo_video/%Y-%m-%d',blank=True)
+    promo_video = models.FileField(upload_to='tutor/documents/promo_video/%Y-%m-%d',default='default_img/promo_video.mp4',blank=True)
     amount = models.IntegerField(default=100)
+    response_time = models.CharField(max_length=20,default='48')
     featured = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
 
