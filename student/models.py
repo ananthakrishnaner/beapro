@@ -28,9 +28,13 @@ class StudentProfile(models.Model):
 
 class StudentTransaction(models.Model):
     fullname = models.CharField(max_length=30,blank=True)
+    email = models.EmailField(blank=True)
     amount = models.CharField(max_length=30,blank=True)
     order_id = models.CharField(max_length=130,blank=True)
     payment_id = models.CharField(max_length=130,blank=True)
     paid = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.fullname
 

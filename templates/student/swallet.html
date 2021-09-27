@@ -34,45 +34,52 @@
         <p class="available-coin">Available coin</p>
         <br />
         <br />
+        
         <form action="" method="POST">
           {% csrf_token %}
+
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
             <p class="plan-text">100 (10 D)</p>
-            <button type="submit" value="2000" id="pay-btn" name="amount" class="plan-button">&#8377; 20</button>
+            <button type="submit" value="20" id="pay-btn" name="amount" class="plan-button">&#8377; 20</button>
         </div>
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
             <p class="plan-text">300 (30 D)</p>
-            <button type="submit" value="5500" id="pay-btn" name="amount" class="plan-button">&#8377; 55</button>
+            <button type="submit" value="55" id="pay-btn" name="amount" class="plan-button">&#8377; 55</button>
         </div>
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
             <p class="plan-text">900 (90 D)</p>
-            <button type="submit" value="16000" id="pay-btn" name="amount" class="plan-button">&#8377; 160</button>
+            <button type="submit" value="160" id="pay-btn" name="amount" class="plan-button">&#8377; 160</button>
         </div>
         <div class="plans">
             <img src="{% static 'img/coins.svg' %}" alt="" class="coins" />
             <p class="plan-text">1800 (180 D)</p>
-            <input type="hidden" value="32000" name="amount" >
-            <button type="submit"  id="pay-btn"  class="plan-button">&#8377; 320</button>
+            <button type="submit"  id="pay-btn" value="320" name="amount"  class="plan-button">&#8377; 320</button>
         </div>
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"
-    data-key="{{ razorpay_merchant_key }}"
-    data-amount="{{razorpay_amount}}"
-    data-currency="INR"
-    data-order_id="{{ razorpay_order_id }}"
-    data-name="BEAPRO"
-    data-description="BEAPRO COIN PURCHASE"
-    data-image="{% static 'img/beaprologo.png' %}"
-    data-prefill.name="{{student.fullname}}"
-    data-prefill.email="{{user.email}}"
-    data-theme.color="#F37254">
-    data-callback_url = 'http://127.0.0.1:8000/student/wallet/payment-status/'
-
-</script>
+        
       </form>
+     
+  {% if payment %}
+  <form action="{% url 'payment-status' %}" method="POST">
+      <script
+      src="https://checkout.razorpay.com/v1/checkout.js"
+      data-key="{{razorpay_merchant_key}}"
+      data-amount="{{ payment.amount }}"
+      data-currency="INR"
+      data-order_id="{{ payment.id }}"
+      data-buttontext="Pay"
+      data-name="BEAPRO"
+      data-description="BEAPRO COIN"
+      data-image="{% static 'img/beaprologo.png' %}"
+      data-prefill.name="{{ payment.name }}"
+      data-prefill.email="{{user.email}}"
+      data-theme.color="#F37254"
+></script>
+<input type="hidden" custom="Hidden Element" name="hidden">
+</form>
+{% endif %}
     </article>
 
     <!-- Table Begin -->
@@ -80,30 +87,26 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Reference No</th>
+            <th scope="col">Order No</th>
             <th scope="col">Amount</th>
             <th scope="col">Date&Time</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
+          {% for transactions in transaction %}
           <tr>
-            <th scope="row">1</th>
-            <td>4564565456</td>
-            <td>55</td>
-            <td>1 july 2020</td>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{transactions.order_id}}</td>
+            <td>{{transactions.amount}}</td>
+            <td>{{transactions.created}}</td>
+            {% if transactions.paid %}
+            <td><i class="fas fa-check-circle"></i></td>
+            {% else %}
+            <td><i class="far fa-times-circle"></i></td>
+            {% endif %}
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
 <!-- Table ending -->

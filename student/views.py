@@ -107,34 +107,38 @@ def student_wallet(request):
     user = request.user
     student = StudentProfile.objects.get(user=user)
     currency = 'INR'
+    useremail = request.user.email
     if request.method == 'POST':
         name = student.fullname
-        amount = request.POST['amount']
-        razorpay_order = razorpay_client.order.create(dict(amount=amount,currency=currency,payment_capture='0'))
-        razorpay_order_id = razorpay_order['id']
-        order_status = razorpay_order['status']
+        org_amount = request.POST['amount']
+        amount = int(org_amount) * 100
+        response_payment  = razorpay_client.order.create(dict(amount=amount,currency=currency))
+        order_id = response_payment['id']
+        order_status = response_payment['status']
         if order_status == 'created':
             beapro_payment = StudentTransaction(
                 fullname=name,
-                amount=amount,
-                order_id=razorpay_order_id
+                email = useremail,
+                amount=org_amount,
+                order_id=order_id
             )
             beapro_payment.save()
+            response_payment['name'] = name
 
-        callback_url = 'student'
-        context = {}
-        context['razorpay_order_id'] = razorpay_order_id
-        context['razorpay_merchant_key'] = settings.RAZOR_KEY_ID
-        context['razorpay_amount'] = amount
-        context['currency'] = currency
-        context['callback_url'] = callback_url
-        context['name'] = name
+        
+        context = {
+            'payment': response_payment,
+            'amount':amount,
+            'name':name,
+            'razorpay_merchant_key':settings.RAZOR_KEY_ID,
+        }
         return render(request,'student/swallet.html',context=context)
     else:
-        amount =1
+        transaction = StudentTransaction.objects.filter(email=useremail).order_by('-created')
         data = {
             'student':student,
             'currency':currency,
+            'transaction':transaction,
         }
         return render(request,'student/swallet.html',data)
 
@@ -145,6 +149,47 @@ def student_wallet(request):
 @csrf_exempt
 def payment_status(request):
     response = request.POST
+    user = request.user
     print(response)
-    return render(request,'student/payment-success.html',{'status': True})
+    params_dict = {
+        'razorpay_order_id': response['razorpay_order_id'],
+        'razorpay_payment_id': response['razorpay_payment_id'],
+        'razorpay_signature': response['razorpay_signature']
+    }
+
+    # client instance
+    client = razorpay_client
+    order_id = response['razorpay_order_id']
+    try:
+        status = client.utility.verify_payment_signature(params_dict)
+        transaction = StudentTransaction.objects.get(order_id=response['razorpay_order_id'])
+        transaction.paid =True
+        transaction.payment_id = response['razorpay_payment_id']
+        transaction.save()
+        ords = client.order.fetch(order_id)
+        paid_amt = ords['amount_paid']
+        if paid_amt == 2000:
+            stdprofile = StudentProfile.objects.get(user=user)
+            stdprofile.wallet_amount +=stdprofile.wallet_amount + 100
+            stdprofile.save()
+        elif paid_amt == 5500:
+            stdprofile = StudentProfile.objects.get(user=user)
+            stdprofile.wallet_amount +=stdprofile.wallet_amount + 300
+            stdprofile.save()
+
+        elif paid_amt == 16000:
+            stdprofile = StudentProfile.objects.get(user=user)
+            stdprofile.wallet_amount +=stdprofile.wallet_amount + 900
+            stdprofile.save()
+        elif paid_amt == 32000:
+            stdprofile = StudentProfile.objects.get(user=user)
+            stdprofile.wallet_amount +=stdprofile.wallet_amount + 1800
+            stdprofile.save()
+        else:
+            stdprofile = StudentProfile.objects.get(user=user)
+            stdprofile.wallet_amount +=stdprofile.wallet_amount - 10
+            stdprofile.save()
+        return render(request,'student/payment-success.html',{'status': True,'paid_amt':paid_amt})
+    except:
+        return render(request,'student/payment-success.html',{'status': False})
 

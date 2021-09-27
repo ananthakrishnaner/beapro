@@ -9,6 +9,10 @@ class StdProfile(admin.ModelAdmin):
     search_fields = ('wallet_amount','fullname','user')
 
 
-admin.site.register(StudentTransaction)
+class Transaction(admin.ModelAdmin):
+    list_display = ('fullname','amount','created','paid')
+    list_filter = ('paid',)
+
+admin.site.register(StudentTransaction,Transaction)
 
 admin.site.register(StudentProfile,StdProfile)
