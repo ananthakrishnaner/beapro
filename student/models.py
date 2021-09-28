@@ -22,9 +22,17 @@ class StudentProfile(models.Model):
     is_allowd_view_blog = models.BooleanField(default=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    prime_expire = models.DateField(null=True,blank=True)
 
     def __str__(self):
         return self.fullname
+
+class Coincheck(models.Model):
+    name=models.CharField(max_length=30,blank=True)
+    coindate = models.DateField(null=True,blank=True)
+
+    def __str__(self):
+        return self.name
 
 class StudentTransaction(models.Model):
     fullname = models.CharField(max_length=30,blank=True)
@@ -34,6 +42,7 @@ class StudentTransaction(models.Model):
     payment_id = models.CharField(max_length=130,blank=True)
     paid = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
+ 
 
     def __str__(self):
         return self.fullname

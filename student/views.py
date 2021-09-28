@@ -3,13 +3,14 @@ from django.shortcuts import render, redirect
 from accounts.models import Account
 from django.contrib import messages,auth
 from django.contrib.auth import logout
-from .models import StudentProfile,StudentTransaction
+from .models import StudentProfile,StudentTransaction,Coincheck
 from .forms import UserProfileForm,StudentUpdateForm
 from .decorators import prime_user
 import razorpay
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseBadRequest
+from datetime import datetime,timedelta,date
 
 #create student account
 def account_signup(request):
@@ -43,14 +44,18 @@ def account_login(request):
         else:
             user1 = auth.authenticate(email=email,password=password)
             if user1 is not None:
-                auth.login(request,user1)
-                return redirect('/')
+                if user1.is_superuser:
+                    auth.login(request,user1)
+                    return redirect('/admin/')
+                else:
+                    auth.login(request,user1)
+                    return redirect('/')
             else:
                 messages.warning(request, 'Invalid Credentials')
                 return redirect('student_account_login')
-
-
-    return render(request,'student/login.html')
+ 
+    else:            
+        return render(request,'student/login.html')
 
 
 # student logout
@@ -65,32 +70,46 @@ def student_profile(request):
     
     try:
         user = request.user
+        username = request.user.username
+        today = date.today()
         student = StudentProfile.objects.get(user=user)
-        account_verified = StudentProfile.objects.filter(user=user,account_verified=True)
-        if request.method == 'POST':
-            u_form = UserProfileForm(request.POST,
-                                    request.FILES,
-                                    instance=request.user)
-            s_form = StudentUpdateForm(request.POST,instance=student)
-            if u_form.is_valid() and s_form.is_valid():
-                u_form.save()
-                s_form.save()
-                messages.success(request, 'Account Updated')
-                return redirect('student_profile')
+        if Coincheck.objects.filter(name=username,coindate=today).exists():
+            account_verified = StudentProfile.objects.filter(user=user,account_verified=True)
+            if request.method == 'POST':
+                u_form = UserProfileForm(request.POST,
+                                        request.FILES,
+                                        instance=request.user)
+                s_form = StudentUpdateForm(request.POST,instance=student)
+                if u_form.is_valid() and s_form.is_valid():
+                    u_form.save()
+                    s_form.save()
+                    messages.success(request, 'Account Updated')
+                    return redirect('student_profile')
+                else:
+                    messages.warning(request, 'Somethng went wrong :(')
+                    return redirect('student_profile')
             else:
-                messages.warning(request, 'Somethng went wrong :(')
-                return redirect('student_profile')
-        else:
-            u_form = UserProfileForm(instance=request.user)
-            s_form = StudentUpdateForm(instance=student)        
+                u_form = UserProfileForm(instance=request.user)
+                s_form = StudentUpdateForm(instance=student)        
 
-        context = {
-            'u_form':u_form,
-            's_form':s_form,
-            'student':student,
-            'account_verified':account_verified,
-        }
-        return render(request,'student/editprofile.html',context)
+            context = {
+                'u_form':u_form,
+                's_form':s_form,
+                'student':student,
+                'account_verified':account_verified,
+            }
+            return render(request,'student/editprofile.html',context)
+
+        elif student.wallet_amount > 9:
+            Coincheck.objects.create(name=username,coindate=today)
+            student.wallet_amount -=10
+            student.prime_user =True
+            student.save()
+            return redirect('/')
+        else:
+            student.prime_user =False
+            student.save()
+            return redirect('/student/wallet/')
 
     except StudentProfile.DoesNotExist:
         print('no user')
@@ -170,24 +189,28 @@ def payment_status(request):
         paid_amt = ords['amount_paid']
         if paid_amt == 2000:
             stdprofile = StudentProfile.objects.get(user=user)
-            stdprofile.wallet_amount +=stdprofile.wallet_amount + 100
+            stdprofile.wallet_amount +=  100
+            stdprofile.prime_expire =datetime.now() + timedelta(days=10)
             stdprofile.save()
         elif paid_amt == 5500:
             stdprofile = StudentProfile.objects.get(user=user)
-            stdprofile.wallet_amount +=stdprofile.wallet_amount + 300
+            stdprofile.wallet_amount += 300
+            stdprofile.prime_expire =datetime.now() + timedelta(days=30)
             stdprofile.save()
 
         elif paid_amt == 16000:
             stdprofile = StudentProfile.objects.get(user=user)
-            stdprofile.wallet_amount +=stdprofile.wallet_amount + 900
+            stdprofile.wallet_amount += 900
+            stdprofile.prime_expire =datetime.now() + timedelta(days=90)
             stdprofile.save()
         elif paid_amt == 32000:
             stdprofile = StudentProfile.objects.get(user=user)
-            stdprofile.wallet_amount +=stdprofile.wallet_amount + 1800
+            stdprofile.wallet_amount += 1800
+            stdprofile.prime_expire =datetime.now() + timedelta(days=180)
             stdprofile.save()
         else:
             stdprofile = StudentProfile.objects.get(user=user)
-            stdprofile.wallet_amount +=stdprofile.wallet_amount - 10
+            stdprofile.wallet_amount -=10
             stdprofile.save()
         return render(request,'student/payment-success.html',{'status': True,'paid_amt':paid_amt})
     except:

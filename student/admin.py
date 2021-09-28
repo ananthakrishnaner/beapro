@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import StudentProfile,StudentTransaction
+from .models import StudentProfile,StudentTransaction,Coincheck
 
 
 class StdProfile(admin.ModelAdmin):
@@ -8,11 +8,15 @@ class StdProfile(admin.ModelAdmin):
     list_filter = ('account_verified',)
     search_fields = ('wallet_amount','fullname','user')
 
+class CoincheckS(admin.ModelAdmin):
+    list_display = ('name','coindate',)
+    list_display_links = ('name','coindate')
+
 
 class Transaction(admin.ModelAdmin):
     list_display = ('fullname','amount','created','paid')
     list_filter = ('paid',)
 
 admin.site.register(StudentTransaction,Transaction)
-
+admin.site.register(Coincheck,CoincheckS)
 admin.site.register(StudentProfile,StdProfile)
