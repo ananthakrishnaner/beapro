@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ContactForm
+from .models import ContactForm,Relationship
 # Register your models here.
 
 
@@ -11,3 +11,4 @@ class Contact(admin.ModelAdmin):
 
 
 admin.site.register(ContactForm,Contact)
+admin.site.register(Relationship)

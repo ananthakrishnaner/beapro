@@ -46,8 +46,19 @@ class TutorProfile(models.Model):
     promo_video = models.FileField(upload_to='tutor/documents/promo_video/%Y-%m-%d',default='default_img/promo_video.mp4',blank=True)
     amount = models.IntegerField(default=100)
     response_time = models.CharField(max_length=20,default='48')
+    connections = models.ManyToManyField(Account,blank=True,related_name='connections_t')
+    created = models.DateTimeField(auto_now_add=True)
     featured = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.fullname
+
+    def __str__(self):
+        return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
+
+    def get_connections(self):
+        return self.connections.all()
+
+    def get_connections_no(self):
+        return self.connections.all().count()

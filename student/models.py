@@ -17,6 +17,7 @@ class StudentProfile(models.Model):
     state = models.CharField(max_length=50,blank=True)
     wallet_amount = models.IntegerField(blank=True,null=True,default=10)
     is_allowed_to_publish = models.BooleanField(default=False)
+    connections = models.ManyToManyField(Account,blank=True,related_name='connections_s')
     prime_user = models.BooleanField(default=False)
     account_verified = models.BooleanField(default=False)
     is_allowd_view_blog = models.BooleanField(default=True)
@@ -26,6 +27,16 @@ class StudentProfile(models.Model):
 
     def __str__(self):
         return self.fullname
+        
+    def get_connections(self):
+        return self.connections.all()
+
+    def get_connections_no(self):
+        return self.connections.all().count()
+
+    def __str__(self):
+        return f"{self.user.username}-{self.created.strftime('%d-%m-%Y')}"
+    
 
 class Coincheck(models.Model):
     name=models.CharField(max_length=30,blank=True)
