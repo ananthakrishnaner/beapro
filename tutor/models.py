@@ -12,11 +12,11 @@ class TutorProfile(models.Model):
         ('Mathematics' , 'Mathematics'),
         ('History' , 'History'),
         ('Programming' , 'Programming'),
-        ('Art' , 'Art'),
         ('Music' , 'Music'),
         ('Chemistry' , 'Chemistry'),
         ('Physics' , 'Physics'),
         ('Languages' , 'Languages'),
+        ('Other' , 'Other'),
     )
 
     Classes_will_be_held_on_choice = (

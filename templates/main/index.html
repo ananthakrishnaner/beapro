@@ -45,7 +45,7 @@
                     <div class="container pb-5 pt-md-5">
                         <div class="row py-5 justify-content-between align-items-center">
                             <div class="col-lg-6 col-md-7 py-5">
-                                <h1 class="font-weight-bold display-4 mb-4">makes it easier for students and tutors to connect</h1>
+                                <h1 class="font-weight-bold display-4 mb-4">Find the perfect teacher</h1>
                                 <p class="lead mb-5">Students get to decide which tutor fits for them & Tutors
                                     get paid what you're worth!</p>
                                 <a href="#contactus" class="btn btn-success">Contact Us &rarr;
@@ -87,13 +87,6 @@
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
-                                <a href="{% url 'tutorprofiles' %}?category=Art">
-                                <i class="lni lni-layers"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Art</h6>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-lg-3 pb-4">
-                            <div class="p-4 bg-tutor rounded">
                                 <a href="{% url 'tutorprofiles' %}?category=Music">
                                 <i class="lni lni-music"></i></a>
                                 <h6 class="font-weight-bold mb-0 pt-3">Music</h6>
@@ -120,6 +113,13 @@
                                 <h6 class="font-weight-bold mb-0 pt-3">Physics</h6>
                             </div>
                         </div>
+                        <div class="col-md-4 col-lg-3 pb-4">
+                            <div class="p-4 bg-tutor rounded">
+                                <a href="{% url 'tutorprofiles' %}?category=Other">
+                                <i class="lni lni-layers"></i></a>
+                                <h6 class="font-weight-bold mb-0 pt-3">Other</h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,25 +134,25 @@
                     </div>
                     <div class="col-12 d-lg-flex ">
                         <div class="text-center">
-                            <img src="img/img-three.png" class="img-fluid mb-2">
+                            <img src="{% static 'img/img-three.png' %}" class="img-fluid mb-2">
                             <h5 class="font-weight-bold mb-4">Find a tutor in select category</h5>
                             <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at
                                 risus ac quam vulputate congue</p>
                         </div>
                         <div class="text-center d-none d-lg-block">
-                            <img src="img/arrow.png">
+                            <img src="{% static 'img/arrow.png' %}">
                         </div>
                         <div class="text-center">
-                            <img src="img/img-two.png" class="img-fluid mb-2">
+                            <img src="{% static 'img/img-two.png' %}" class="img-fluid mb-2">
                             <h5 class="font-weight-bold mb-4">Book & Schedule your meeting</h5>
                             <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at
                                 risus ac quam vulputate congue.</p>
                         </div>
                         <div class="text-center d-none d-lg-block">
-                            <img src="img/arrow.png">
+                            <img src="{% static 'img/arrow.png' %}">
                         </div>
                         <div class="text-center">
-                            <img src="img/img-one.png" class="img-fluid mb-2">
+                            <img src="{% static 'img/img-one.png' %}" class="img-fluid mb-2">
                             <h5 class="font-weight-bold mb-4">Get knowledge together with the tutor</h5>
                             <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at
                                 risus ac quam vulputate congue.</p>
