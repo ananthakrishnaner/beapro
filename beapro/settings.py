@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-from decouple import config
+from secretfile import *
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config('SECRET_KEY')
+#SECRET_KEY =hiddden 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+#DEBUG = hiddden
 
 ALLOWED_HOSTS = ['*']
 
@@ -93,15 +93,8 @@ WSGI_APPLICATION = 'beapro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beaprodb',
-        'USER': 'postgres',
-        'PASSWORD':'ak',
-        'HOST':'localhost'
-    }
-}
+#DATABASES = {Hidden}
+
 
 
 # Password validation
@@ -152,15 +145,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #Gmail Settings
 
-EMAIL_BACKEND = config('EMAIL_BACKEND')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT =config('EMAIL_PORT')
-EMAIL_USE_TLS =config('EMAIL_USE_TLS', default=True, cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+#EMAIL_BACKEND = hidden
+#EMAIL_HOST = hidden)
+#EMAIL_PORT =hidden
+#EMAIL_USE_TLS =hidden
+#EMAIL_HOST_USER = hidden
+#EMAIL_HOST_PASSWORD = hidden
 
 
 #Payment
-RAZOR_KEY_ID = config('RAZOR_KEY_ID')
-RAZOR_KEY_SECRET = config('RAZOR_KEY_SECRET')
+#RAZOR_KEY_ID = hidden
+#RAZOR_KEY_SECRET = hidden
 

@@ -162,6 +162,14 @@ def student_wallet(request):
         return render(request,'student/swallet.html',data)
 
 
+def mytutor(request):
+    user = request.user
+    tutorlist = StudentProfile.objects.get(user=user)
+    data ={'tutorlist':tutorlist,}
+    return render(request,'student/mytutor.html',data)
+
+
+
 # we need to csrf_exempt this url as
 # POST request will be made by Razorpay
 # and it won't have the csrf token.
