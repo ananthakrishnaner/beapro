@@ -26,7 +26,7 @@ class TutorUpdateForm(forms.ModelForm):
         model = TutorProfile
         fields = ('fullname','mobile','address','birth_date','collegeName','country','state','about_me',
         'experience','subject','individual','group','class_will_be_held_on','your_cv','qualification',
-        'qualification_cert','social_profile','promo_video','amount'
+        'qualification_cert','social_profile','promo_video','amount','skills'
         )
 
         widgets = {
@@ -38,6 +38,7 @@ class TutorUpdateForm(forms.ModelForm):
             'country':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Your Country',}),
             'state':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Your State',}),
             'about_me': forms.Textarea(attrs={'class': 'form-control','placeholder' : 'Tell Us About Yourself',}),
+            'skills': forms.Textarea(attrs={'class': 'form-control','placeholder' : 'Tell Us About Your Skills',}),
             'experience':forms.Textarea(attrs={'class': 'form-control','placeholder' : 'Tell Us About Your Expirence',}),
             'subject':forms.Select(attrs={'id':'format'}),
             'individual':forms.CheckboxInput(attrs={'class':'form-check-input','id':'flexCheckDefault'}),

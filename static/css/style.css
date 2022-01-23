@@ -294,7 +294,7 @@ i .fa .fa-bell::before{
 }
 }
 
-@media(max-width:768px) {	
+@media(max-width:740px) {	
 
 .user-profile-section{
 	position: absolute;
@@ -309,8 +309,9 @@ div .user-profile-list-section{
 	
 }
 
-.btn-success{
-	margin-left:150px;
+.btn{
+	font-size: 10px;
+	
 }
 }
 
@@ -323,6 +324,9 @@ div .user-profile-list-section{
 	position: absolute;
     top: 1px;
     left: 70%;
+}
+.btn{
+	font-size: 10px;	
 }
 
 div .user-profile-list-section{

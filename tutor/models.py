@@ -34,6 +34,7 @@ class TutorProfile(models.Model):
     country = models.CharField(max_length=50)
     state = models.CharField(max_length=50,blank=True)
     about_me = models.TextField(max_length=700)
+    skills = models.TextField(max_length=500,blank=True)
     experience = models.TextField(max_length=700)
     subject = models.CharField( choices=subject_choices, max_length=20,null=True, default=None)
     individual = models.BooleanField(default=False)
