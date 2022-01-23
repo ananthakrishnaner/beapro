@@ -1,0 +1,73 @@
+{
+    "name": "BEAPRO",
+    "short_name": "BEAPRO",
+    "start_url": "/",
+    "display": "standalone",
+	"description": "Achieve your learning goals."
+    "background_color": "#000",
+    "theme_color": "#FFE1C4",
+    "orientation": "portrait-primary",
+    "icons": [{
+            "src": "icons/logo72.png",
+            "type": "image/png",
+            "sizes": "72x72",
+            "purpose": "any maskable"
+
+        }, {
+            "src": "icons/logo97.png",
+            "type": "image/png",
+            "sizes": "96x96",
+            "purpose": "any maskable"
+
+        },
+        {
+            "src": "icons/logo120.png",
+            "type": "image/png",
+            "sizes": "120x120",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/logo128.png",
+            "sizes": "128x128",
+            "types": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/logo144.png",
+            "sizes": "144x144",
+            "types": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/logo152.png",
+            "type": "image/png",
+            "sizes": "152x152",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/logo180.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/logo192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/logo384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icons/logo512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+
+    ]
+}
