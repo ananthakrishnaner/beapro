@@ -75,58 +75,90 @@
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=Mathematics">
-                                <i class="lni lni-calculator"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Mathematics</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-calculator"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">Mathematics</h6></a>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=History">
-                                <i class="lni lni-library"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">History</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-library"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">History</h6></a>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=Programming">
-                                <i class="lni lni-code"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Programming</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-code"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">Programming</h6></a>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=Music">
-                                <i class="lni lni-music"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Music</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-music"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">Music</h6></a>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=Chemistry">
-                                <i class="lni lni-package"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Chemistry</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-package"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">Chemistry</h6></a>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=Languages">
-                                <i class="lni lni-users"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Languages</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-users"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">Languages</h6></a>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=Physics">
-                                <i class="lni lni-bulb"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Physics</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-bulb"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">Physics</h6></a>
                             </div>
                         </div>
                         <div class="col-md-4 col-lg-3 pb-4">
                             <div class="p-4 bg-tutor rounded">
+                                {% if user.is_authenticated %}
                                 <a href="{% url 'tutorprofiles' %}?category=Other">
-                                <i class="lni lni-layers"></i></a>
-                                <h6 class="font-weight-bold mb-0 pt-3">Other</h6>
+                                {% else %}
+                                <a href="{% url 'student_account_login' %}">
+                                {% endif %}
+                                <i class="lni lni-layers"></i>
+                                <h6 class="font-weight-bold mb-0 pt-3">Other</h6></a>
                             </div>
                         </div>
                     </div>
