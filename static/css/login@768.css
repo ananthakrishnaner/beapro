@@ -1,0 +1,90 @@
+@media all and (max-width:768px){
+    .container {
+    min-height: 800px;
+    height: 100vh;
+    /* background-color: salmon; */
+    }
+    .signin-signup {
+    width: 100%;
+    top: 95%;
+    margin: 8rem auto;
+    margin-bottom: 0px;
+    /* margin-left: 10px; */
+    transform: translate(-50%, -100%);
+    transition: 1s 0.8s ease-in-out;
+    /* background-color: yellow; */
+    }
+    .input-field{
+        /* background-color: red; */
+        max-width: 768px;
+        width: 100%;
+        background-color: #f0f0f0;
+        margin: 15px 0;
+        height: 60px;
+        border-radius: 55px;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        padding: 0 0.4rem;
+        position: relative;
+    }
+    .panel h3 {
+    font-size: 1.6rem;
+    }
+
+    .panel p {
+    font-size: 1rem;
+    padding: .5rem 0;
+    }
+
+    .btn.transparent {
+    width: 120px;
+    height: 40px;
+    font-size: .8rem;
+    }
+
+    .container:before {
+    width: 1300px;
+    height: 1000px;
+    transform: translateX(-50%);
+    left: 30%;
+    bottom: 65%;
+    right: initial;
+    top: initial;
+    transition: 2s ease-in-out;
+      }
+    }
+    h2.title{
+        font-size: 30px;
+        /* font-weight: 500; */
+    }
+    
+    input::placeholder{
+        font-size: 20px;
+    }
+    i.fas::before{
+        /* background-color: yellow; */
+        font-size: 22px;
+        /* position: relative;
+        top: 20px; */
+        /* margin-top: 20px; */
+    }
+    input.btn.solid{
+        width: 160px;
+        height: 55px;
+        font-size: 1rem;
+        /* width: 150px;
+        height: 40px;
+        font-size: 0.7rem; */
+    }
+    p.social-text{
+        font-size: 20px;
+        /* background-color: red; */
+    }
+    a.social-icon{
+        width: 60px;
+        height: 60px;
+    }
+    a.social-icon i.fab{
+        /* font-size: 12px; */
+    }
+}

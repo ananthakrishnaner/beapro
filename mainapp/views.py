@@ -10,7 +10,7 @@ from tutor.models import TutorProfile
 
 
 # Create your views here.
-
+    
 def index(request):
     if request.method == 'POST':
         name= request.POST['name']
