@@ -191,4 +191,25 @@ def accept_connection_request(request, *args, **kwargs):
     
 
 
+def remove_connection(request, *args, **kwargs):
+    user = request.user
+    payload = {}
+    if request.method == "POST" and user.is_authenticated:
+        user_id = request.POST.get("receiver_user_id")
+        if user_id:
+            try:
+                removee = Account.objects.get(pk=user_id)
+                print(removee)
+                connection_list = StudentProfile.objects.get(user=user)
+                connection_list.connectionterminate(removee)
+                payload['response'] = "Successfully removed that connection."
+            except Exception as e:
+                payload['response'] = f"Something went wrong: {str(e)}"
+        else:
+            payload['response'] = "There was an error. Unable to remove that connection."
+    else:
+        # should never happen
+        payload['response'] = "You must be authenticated to remove a connection."
+    return HttpResponse(json.dumps(payload), content_type="application/json")
+
 

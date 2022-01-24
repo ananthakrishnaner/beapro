@@ -58,8 +58,12 @@
                                     Send Connection Request
                                 </button>
                                 {% elif request_sent == 1 %}
-                                <button class="btn btn-danger rqstalign" id="id_cancel_conncetion_request_btn">
+                                <button class="btn btn-danger rqstalign" id="id_unconsnection_btn">
                                     Cancel Connection Request
+                                </button>
+                                {% else %}
+                                <button class="btn btn-secondary rqstalign" id="id_unconnection_btn">
+                                    Remove Connection
                                 </button>
                                 {% endif %}
                             {% endif %}
@@ -189,17 +193,28 @@
                     location.reload();
                 }
             
-            
+                function onConncetionRemoved(){
+                    location.reload();
+                }
+
                 var sendConncetionRequestBtn = document.getElementById("id_send_conncetion_request_btn")
                 if (sendConncetionRequestBtn != null){
                     sendConncetionRequestBtn.addEventListener("click", function(){
                         sendConncetionRequest({{tutorprofile.user.id}}, onConncetionRequestSent)
-                        console.log('ak')
+                    })
+                }
+
+                var removeConncetionBtn = document.getElementById("id_unconnection_btn")
+                if (removeConncetionBtn != null){
+                    removeConncetionBtn.addEventListener("click", function(){
+                    removeConnection("{{tutorprofile.user.id}}", onConncetionRemoved)
                     })
                 }
             </script>
             
             {% include 'main/send_connection_request.html' %}
+
+            {% include 'main/remove_connection.html' %}
             <script>
                 $('.testimonials').owlCarousel({
                     loop: false,

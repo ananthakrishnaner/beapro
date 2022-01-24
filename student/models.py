@@ -40,13 +40,15 @@ class StudentProfile(models.Model):
             self.connections.remove(account)
         
     def connectionterminate(self,removee):
-        remove_conncetion_list = self
-        remove_conncetion_list.remove_connection(removee)
-        connections_list = StudentProfile.objects.get(user=removee)
-        connections_list.remove_connection(self.user)
+        remover_connection_list = self # person terminating the friendship
+        remover_connection_list.remove_connection(removee)
+        connection_list = TutorProfile.objects.get(user=removee)
+        connection_list.remove_connection(remover_connection_list.user)
+
 
     def get_connections(self):
         return self.connections.all()
+
 
     def get_connections_no(self):
         return self.connections.all().count()
