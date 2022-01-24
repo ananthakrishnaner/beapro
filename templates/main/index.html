@@ -225,9 +225,10 @@
                         {% for featured in featuredtutor %}
                         <div class="p-5">
                             <div class="d-flex align-items-end mb-5">
+                                 <a  href="{% url 'viewprofile' featured.id %}">
                                 <div class="img-radius">
                                     <img src="{{featured.user.profile_image.url}}">
-                                </div>
+                                </div></a>
                                 <div class="ml-3"><img
                                     src="https://annedece.sirv.com/Images/5e5fd7c602ca7c29a9feb660_quote-icon.svg">
                                 </div>
