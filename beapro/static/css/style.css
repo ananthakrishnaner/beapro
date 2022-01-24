@@ -88,10 +88,12 @@ h1, h2, h3, h4, h5, h6 {
 		background-color: #f2faff !important;
 }
 .bg-tutor {
+	text-decoration: none;
 	background-color: #f2faff;
 	transition: all 0.3s ease;
 }
 .bg-tutor:hover {
+	text-decoration: none;
 	cursor: pointer;
 	background-color: #15b28b;
 	color: #FFF;

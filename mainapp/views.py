@@ -49,6 +49,8 @@ def index(request):
 def tutorprofiles(request):
     if request.user.is_student:
         tutorprofile = TutorProfile.objects.all()
+        user = request.user
+        student = StudentProfile.objects.get(user=user)
         if 'category' in request.GET:
             category = request.GET['category']
             if category != 'All':
@@ -57,12 +59,14 @@ def tutorprofiles(request):
                 tutorprofile = TutorProfile.objects.all()
             
             data ={
+                'student':student,
                 'tutorprofile':tutorprofile,
              }
             return render(request,'main/profilecard.html',data)
         else:
             tutorprofile = TutorProfile.objects.all()     
             data ={
+                'student':student,
                 'tutorprofile':tutorprofile,
             }
             return render(request,'main/profilecard.html',data)
@@ -73,8 +77,11 @@ def tutorprofiles(request):
 
 
 def viewprofile(request,id):
+    user = request.user
+    student = StudentProfile.objects.get(user=user)
     tutorprofile =  get_object_or_404(TutorProfile, pk=id)
     data ={
+        'student':student,
         'tutorprofile':tutorprofile,
     }
     return render(request,'main/viewprofile.html',data)

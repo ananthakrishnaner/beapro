@@ -55,10 +55,20 @@
   .title-white {
     color: rgb(10, 0, 0);
   }
-  
-  .title-black {
-    color: black;
+  a {
+    color:rgb(255, 230, 230);
   }
+  .title-black {
+    color: rgb(21, 0, 0);
+    font-size: 21px;
+    text-align: center;
+  }
+  .title-black:hover {
+    color: rgb(248, 232, 232);
+    font-size: 23px;
+    text-align: center;
+  }
+  
   .verify-green{
       color: green;
   }
