@@ -24,7 +24,6 @@ class TutorProfile(models.Model):
         ('Your Home','Your Home'),
         ('At my home','At my home'),
     )
-
     user = models.OneToOneField(Account,on_delete=models.CASCADE)
     fullname = models.CharField(max_length=30)
     mobile = models.CharField(max_length=15)

@@ -23,6 +23,10 @@ h1, h2, h3, h4, h5, h6 {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
+.rqstalign{
+	margin-top:36px;
+	margin-left: 100px;
+}
 .btn-success {
 	background-color: #15b28b;
 	border-color: #15b28b;
@@ -330,7 +334,10 @@ div .user-profile-list-section{
 .btn{
 	font-size: 10px;	
 }
-
+.rqstalign{
+	margin-top:36px;
+	margin-left: 50px;
+}
 div .user-profile-list-section{
 	position: absolute;
     top: 55px;

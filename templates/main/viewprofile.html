@@ -52,7 +52,17 @@
                                 {% endif %}
                             </div>
                             <div class="text-3">And I'm a <span class="typing">{{tutorprofile.subject}} Teacher</span></div>
-                            <a href="#"><i class="fas fa-user-friends"></i></i> Request Demo</a>
+                            {% if is_connection == False and is_self == False %}
+                                {% if request_sent == 0 %}
+                                <button class="btn btn-primary rqstalign" id="id_send_conncetion_request_btn">
+                                    Send Connection Request
+                                </button>
+                                {% elif request_sent == 1 %}
+                                <button class="btn btn-danger rqstalign" id="id_send_conncetion_request_btn">
+                                    Cancel Connection Request
+                                </button>
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </section>
@@ -139,7 +149,6 @@
                                     <div class="text">My skills & experiences.</div>
                                     <p>{{tutorprofile.experience}}</p><br>
                                     <p>{{tutorprofile.skills}}</p>
-                                    <!-- <a href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp<i class="fab fa-free-code-camp"></i></a> -->
                                 </div>
                                 <div class="column right">
                                     <div class="embed-responsive embed-responsive-16by9">
@@ -161,13 +170,36 @@
             {% include 'main/footer.html' %}
             </div>
             <!-- Optional JavaScript -->
+
+
+                
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
             <script src="{% static './js/viewprofile.js' %}"></script>
             <script src="https://kit.fontawesome.com/e655379602.js" crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+            <script type="text/javascript">
+
+                // called from base_js.html
+                //preloadImage("{{profile_image|safe}}", 'id_profile_image')
+            
+                function onConncetionRequestSent(){
+                    location.reload();
+                }
+            
+            
+                var sendConncetionRequestBtn = document.getElementById("id_send_conncetion_request_btn")
+                if (sendConncetionRequestBtn != null){
+                    sendConncetionRequestBtn.addEventListener("click", function(){
+                        sendConncetionRequest({{tutorprofile.user.id}}, onConncetionRequestSent)
+                        console.log('ak')
+                    })
+                }
+            </script>
+            
+            {% include 'main/send_connection_request.html' %}
             <script>
                 $('.testimonials').owlCarousel({
                     loop: false,
