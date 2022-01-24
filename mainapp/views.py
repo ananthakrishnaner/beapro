@@ -88,6 +88,7 @@ def viewprofile(request,id):
     is_self = True
     is_connection = False
     connection_request = None
+    request_sent = -1
     viewingprofile = TutorProfile.objects.filter(user=tutorprofile.user)
     connections = viewingprofile[0].connections.all()
     user = request.user
@@ -161,6 +162,32 @@ def send_connection_request(request, *args, **kwargs):
 		payload['response'] = "You must be authenticated to send a Connection request."
 	return HttpResponse(json.dumps(payload), content_type="application/json")
       
+
+def accept_connection_request(request, *args, **kwargs):
+    user = request.user
+    payload = {}
+    if request.method == "GET" and user.is_authenticated:
+        connection_request_id = kwargs.get("connection_request_id")
+        if connection_request_id:
+            connection_request = ConnectionRequest.objects.get(pk=connection_request_id)
+            print(connection_request.receiver)
+            # confirm that is the correct request
+            if connection_request.receiver == user:
+                if connection_request: 
+                    # found the request. Now accept it
+                    updated_notification = connection_request.accept()
+                    payload['response'] = "connection request accepted."
+
+                else:
+                    payload['response'] = "Something went wrong."
+            else:
+                payload['response'] = "That is not your request to accept."
+        else:
+            payload['response'] = "Unable to accept that connection request."
+    else:
+        # should never happen
+        payload['response'] = "You must be authenticated to accept a connection request."
+    return HttpResponse(json.dumps(payload), content_type="application/json")
     
 
 

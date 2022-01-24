@@ -62,3 +62,18 @@ class TutorProfile(models.Model):
 
     def get_connections_no(self):
         return self.connections.all().count()
+
+    def add_connection(self, account):
+        if not account in self.connections.all():
+            self.connections.add(account)
+
+#Remove student
+    def remove_connection(self,account):
+        if account in self.connections.all():
+            self.connections.remove(account)
+        
+    def connectionterminate(self,removee):
+        remove_conncetion_list = self
+        remove_conncetion_list.remove_connection(removee)
+        connections_list = StudentProfile.objects.get(user=removee)
+        connections_list.remove_connection(self.user)

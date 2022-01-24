@@ -4,8 +4,9 @@ from django.contrib import messages,auth
 from django.contrib.auth import logout
 from accounts.models import Account
 from .forms import UserProfileForm,TutorUpdateForm
-
-
+from django.http import HttpResponse
+import json
+from student.models import ConnectionRequest
 
 #create Tutor account
 def account_signup(request):
@@ -88,3 +89,22 @@ def tutor_profile(request):
     except TutorProfile.DoesNotExist:
         print('no user')
         return redirect('tutor_account_login')
+
+
+def connection_requests(request, *args, **kwargs):
+    context = {}
+    user=request.user
+    if user.is_authenticated:
+        user_id = kwargs.get("user_id")
+        account = Account.objects.get(pk=user_id)
+        
+        if account == user:
+            connection_requests = ConnectionRequest.objects.filter(receiver=account, is_active=True)
+            context['connection_requests'] = connection_requests
+        else:
+            return HttpResponse("You can't view another users connection requests.")
+    else:
+        redirect("login")
+    return render(request, "tutor/connection_request_list.html", context)
+
+

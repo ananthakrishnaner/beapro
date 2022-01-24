@@ -1,0 +1,166 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel=icon href={% static 'img/beaprologo.png' %} sizes="16x16" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <title>Be A Pro | Connection</title>
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+	<link rel="manifest" href="/static/manifest.json">
+
+<style type="text/css">
+	.profile-image{
+		max-height: 100px;
+		max-width: 100px;
+	}
+	.profile-image{
+		border-radius: 12px;
+	}
+	.card{
+		border-radius: 12px;
+	}
+	.dropdown-toggle::after { 
+		content: none; 
+	}
+	.profile-link{
+		color: #000;
+	}
+	.material-icons{
+		font-size: 30px;
+	}
+	.material-icons:hover{
+		cursor: pointer;
+	}
+	.confirm-friend-request{
+		color: green;
+	}
+	.confirm-friend-request:hover {
+		opacity: 0.3;
+	}
+	.decline-friend-request:hover {
+		opacity: 0.3;
+	}
+	.decline-friend-request{
+		color: red;
+	}
+</style>
+
+<div class="container">
+	 {% include 'main/navbar.html' %}
+	<div class="card p-2">
+
+		{% if connection_requests %}
+		{{connection_requests|length}}
+		<div class="d-flex flex-row flex-wrap">
+		{% for request in connection_requests %}
+		<div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center">
+			<!-- <a class="profile-link" href="#"> -->
+				<div class="card-image m-2">
+					<img class="img-fluid profile-image" src="{{request.sender.profile_image.url}}" alt="">
+				</div>
+			<!-- </a> -->
+			<!-- <a class="profile-link" href="#"> -->
+				<div class="card-center px-2">
+					<h4 class="card-title">{{request.sender.username}}</h4> {{request.sender.email}}
+				</div>
+			<!-- </a> -->
+			<div class="d-flex flex-row card-right flex-grow-1 justify-content-end mx-2">
+	  			<span id="id_cancel_{{request.sender.id}}" class="decline-friend-request material-icons p-1" onclick='triggerDeclineFriendRequest("{{request.id}}")'>cancel</span>
+	  			<span id="id_confirm_{{request.sender.id}}" class="confirm-friend-request material-icons p-1" onclick='triggerAcceptConnectionRequest("{{request.id}}")'>Accept</span>
+			</div>
+		</div>
+		{% if forloop.counter|divisibleby:2 %}
+		</div><div class="d-flex flex-row flex-wrap">
+		{% endif %}
+		
+		{% endfor %}
+		
+		{% else %} <!-- If no friends -->
+		<div class="d-flex flex-row flex-grow-1 justify-content-center align-items-center p-4">
+			<p>No results</p>
+		</div>
+		{% endif %}
+		</div>
+	</div>
+	
+</div>
+
+       <script src="https://kit.fontawesome.com/e655379602.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+        <script src="{% static './js/editprofile.js' %}"></script>
+        <script>
+            $('.testimonials').owlCarousel({
+                loop: false,
+                margin: 20,
+                nav: false,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    800: {
+                        items: 2
+                    }
+                }
+            })
+        </script>
+
+
+<script type="text/javascript">
+
+	function onConncectionRequestAccepted(){
+		location.reload();
+	}
+
+	// function onConnectionDeclined(){
+	// 	location.reload();
+	// }
+
+	function triggerAcceptConnectionRequest(connection_request_id){
+		acceptConncectionRequest(connection_request_id, onConncectionRequestAccepted)
+	}
+
+	// function triggerDeclineConnection(connection_request_id){
+	// 	declineCriendRequest(connection_request_id, onConnectionDeclined)
+	// }
+
+
+</script>
+{% include 'main/accept_connection_request.html' %}
+        <script>
+            $('.testimonials').owlCarousel({
+                loop: false,
+                margin: 20,
+                nav: false,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    800: {
+                        items: 2
+                    }
+                }
+            })
+        </script>

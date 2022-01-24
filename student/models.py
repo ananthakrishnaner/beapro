@@ -4,6 +4,7 @@ from django.db.models.expressions import F
 from django.dispatch import receiver
 from accounts.models import Account
 from datetime import datetime
+from tutor.models import TutorProfile
 
 # Create your models here.
 
@@ -64,7 +65,7 @@ class ConnectionRequest(models.Model):
         return self.sender.username
     
     def accept(self):
-        receiver_connection_list = StudentProfile.objects.get(user=self.receiver)
+        receiver_connection_list = TutorProfile.objects.get(user=self.receiver)
         if receiver_connection_list:
             receiver_connection_list.add_connection(self.sender)
             sender_connection_list = StudentProfile.objects.get(user=self.sender)
