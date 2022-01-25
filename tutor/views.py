@@ -108,3 +108,26 @@ def connection_requests(request, *args, **kwargs):
     return render(request, "tutor/connection_request_list.html", context)
 
 
+def decline_connection_request(request, *args, **kwargs):
+    user = request.user
+    payload = {}
+    if request.method == "GET" and user.is_authenticated:
+        connection_request_id = kwargs.get("connection_request_id")
+        if connection_request_id:
+            connection_request = ConnectionRequest.objects.get(pk=connection_request_id)
+            # confirm that is the correct request
+            if connection_request.receiver == user:
+                if connection_request: 
+                    # found the request. Now decline it
+                    updated_notification = connection_request.decline()
+                    payload['response'] = "connection request declined."
+                else:
+                    payload['response'] = "Something went wrong."
+            else:
+                payload['response'] = "That is not your connection request to decline."
+        else:
+            payload['response'] = "Unable to decline that connection request."
+    else:
+        # should never happen
+        payload['response'] = "You must be authenticated to decline a connection request."
+    return HttpResponse(json.dumps(payload), content_type="application/json")

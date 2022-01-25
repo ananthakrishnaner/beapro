@@ -17,6 +17,9 @@
     <title>Be A Pro | Connection</title>
     <link rel="stylesheet" href="{% static './css/style.css' %}">
 	<link rel="manifest" href="/static/manifest.json">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 
 <style type="text/css">
 	.profile-image{
@@ -75,8 +78,8 @@
 				</div>
 			<!-- </a> -->
 			<div class="d-flex flex-row card-right flex-grow-1 justify-content-end mx-2">
-	  			<span id="id_cancel_{{request.sender.id}}" class="decline-friend-request material-icons p-1" onclick='triggerDeclineFriendRequest("{{request.id}}")'>cancel</span>
-	  			<span id="id_confirm_{{request.sender.id}}" class="confirm-friend-request material-icons p-1" onclick='triggerAcceptConnectionRequest("{{request.id}}")'>Accept</span>
+	  			<span id="id_cancel_{{request.sender.id}}"  class="decline-friend-request material-icons p-1"  onclick='triggerDeclineConnection("{{request.id}}")'>cancel</span>
+	  			<span id="id_confirm_{{request.sender.id}}" class="confirm-friend-request material-icons p-1" onclick='triggerAcceptConnectionRequest("{{request.id}}")'>check</span>
 			</div>
 		</div>
 		{% if forloop.counter|divisibleby:2 %}
@@ -133,21 +136,22 @@
 		location.reload();
 	}
 
-	// function onConnectionDeclined(){
-	// 	location.reload();
-	// }
+	function onConnectionDeclined(){
+		location.reload();
+	}
 
 	function triggerAcceptConnectionRequest(connection_request_id){
 		acceptConncectionRequest(connection_request_id, onConncectionRequestAccepted)
 	}
 
-	// function triggerDeclineConnection(connection_request_id){
-	// 	declineCriendRequest(connection_request_id, onConnectionDeclined)
-	// }
+	function triggerDeclineConnection(connection_request_id){
+		declineConnectionRequest(connection_request_id, onConnectionDeclined)
+	}
 
 
 </script>
 {% include 'main/accept_connection_request.html' %}
+{% include 'tutor/decline_connection_request.html' %}
         <script>
             $('.testimonials').owlCarousel({
                 loop: false,
