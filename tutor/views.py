@@ -6,7 +6,7 @@ from accounts.models import Account
 from .forms import UserProfileForm,TutorUpdateForm
 from django.http import HttpResponse
 import json
-from student.models import ConnectionRequest
+from student.models import ConnectionRequest,StudentProfile
 
 #create Tutor account
 def account_signup(request):
@@ -130,4 +130,46 @@ def decline_connection_request(request, *args, **kwargs):
     else:
         # should never happen
         payload['response'] = "You must be authenticated to decline a connection request."
+    return HttpResponse(json.dumps(payload), content_type="application/json")
+
+
+def connection_list_view(request, *args, **kwargs):
+    context = {}
+    user = request.user
+    if user.is_authenticated:
+        user_id = kwargs.get("user_id")
+        
+        if user_id:
+            try:
+                this_user = Account.objects.get(pk=user_id)
+                connection_list = TutorProfile.objects.get(user=this_user)
+                user_connection_list = connection_list.connections.all()
+                context['connection_list'] = user_connection_list
+                context['this_user'] = this_user
+            except Account.DoesNotExist:
+                return HttpResponse("That user does not exist.")
+
+    else:       
+        return HttpResponse("You must be connection to view their connection list.")
+    return render(request, "tutor/connection_list.html", context)
+
+def remove_connection_student(request, *args, **kwargs):
+    user = request.user
+    payload = {}
+    if request.method == "POST" and user.is_authenticated:
+        user_id = request.POST.get("receiver_user_id")
+        if user_id:
+            try:
+                removee = Account.objects.get(pk=user_id)
+                print(user)
+                connection_list = TutorProfile.objects.get(user=user)
+                connection_list.connectionterminate(removee)
+                payload['response'] = "Successfully removed that connection."
+            except:
+                pass
+        else:
+            payload['response'] = "There was an error. Unable to remove that connection."
+    else:
+        # should never happen
+        payload['response'] = "You must be authenticated to remove a connection."
     return HttpResponse(json.dumps(payload), content_type="application/json")

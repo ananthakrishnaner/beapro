@@ -23,6 +23,12 @@
 </head>
 
 <body>
+
+<style type="text/css">
+.rqstalignmobile {
+    border-radius: 4px;
+}
+</style>    
     <div class="page-wrape">
         <div class="position-relative">
             <!-- <div class="hero-shape"></div> -->
@@ -167,7 +173,22 @@
         
                     <div class="navbars">
                         <a href="#home" class="active">₹{{tutorprofile.amount}}/Hour</a>
-                        <a href="#news">Buy now</a>
+                        {% if is_connection == False and is_self == False %}
+                            {% if request_sent == 0 %}
+                            <button class="btn btn-primary rqstalignmobile" id="id_send_conncetion_request_btn">
+                                Send Connection Request
+                            </button>
+                            {% elif request_sent == 1 %}
+                            <button class="btn btn-danger rqstalignmobile" id="id_cancel_conncetion_request_btn">
+                                Cancel Connection Request
+                            </button>
+                            {% else %}
+                            <button class="btn btn-secondary rqstalignmobile" id="id_unconnection_btn">
+                                Remove Connection
+                            </button>
+                            {% endif %}
+                        {% endif %}
+
                     </div>
         
             <!-- FOOTER SECTION -->

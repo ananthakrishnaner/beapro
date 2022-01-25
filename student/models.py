@@ -45,6 +45,14 @@ class StudentProfile(models.Model):
         connection_list = TutorProfile.objects.get(user=removee)
         connection_list.remove_connection(remover_connection_list.user)
 
+    def is_mutual_connection(self, connection):
+        """
+        Is this a friend?
+        """
+        if connection in self.connection.all():
+            return True
+        return False   
+
 
     def get_connections(self):
         return self.connections.all()
