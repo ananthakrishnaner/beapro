@@ -52,7 +52,7 @@
                       <img src="{{tutorlist.user.profile_image.url}}" /> 
                     </div>
                   <div class="card_title title-white">
-                    <h3> <a id ="textc" href="{% url 'viewprofile' tutorlist.id %}">{{tutorlist.fullname}} 
+                    <h3> <a id ="textc" href="{% url 'viewprofile' tutorlist.user.id %}">{{tutorlist.fullname}} 
                       {% if tutorlist.verified %}
                       <i class="fas fa-check-circle verify-green"></i>
                       {% else %}

@@ -84,7 +84,7 @@ def tutorprofiles(request):
 
 
 def viewprofile(request,id):
-    tutorprofile =  get_object_or_404(TutorProfile, pk=id)
+    tutorprofile =  TutorProfile.objects.get(user_id = id) 
     is_self = True
     is_connection = False
     connection_request = None

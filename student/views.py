@@ -162,11 +162,26 @@ def student_wallet(request):
         return render(request,'student/swallet.html',data)
 
 
-def mytutor(request):
+
+def mytutor(request,*args, **kwargs):
+    context = {}
     user = request.user
-    tutorlist = StudentProfile.objects.get(user=user)
-    data ={'tutorlist':tutorlist,}
-    return render(request,'student/mytutor.html',data)
+    if user.is_authenticated:
+        if user:
+            try:
+                this_user = Account.objects.get(username=user)
+                print(this_user)
+                connection_list = StudentProfile.objects.get(user=this_user)
+                user_connection_list = connection_list.connections.all()
+                context['connection_list'] = user_connection_list
+                context['this_user'] = this_user
+            except Account.DoesNotExist:
+                return HttpResponse("That user does not exist.")
+
+    else:       
+        return HttpResponse("You must be connection to view their connection list.")
+    return render(request, "student/mytutor.html", context)
+
 
 
 
