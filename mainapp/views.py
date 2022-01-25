@@ -213,3 +213,31 @@ def remove_connection(request, *args, **kwargs):
     return HttpResponse(json.dumps(payload), content_type="application/json")
 
 
+
+def cancel_connection_request(request, *args, **kwargs):
+    user = request.user
+    payload = {}
+    if request.method == "POST" and user.is_authenticated:
+        user_id = request.POST.get("receiver_user_id")
+        if user_id:
+            receiver = Account.objects.get(pk=user_id)
+            try:
+                connection_requests =   ConnectionRequest.objects.filter(sender=user, receiver=receiver, is_active=True)
+            except  ConnectionRequest.DoesNotExist:
+                payload['response'] = "Nothing to cancel. connection request does not exist."
+
+            # There should only ever be ONE active connection request at any given time. Cancel them all just in case.
+            if len(connection_requests) > 1:
+                for request in connection_requests:
+                    request.cancel()
+                payload['response'] = "connection request canceled."
+            else:
+                # found the request. Now cancel it
+                connection_requests.first().cancel()
+                payload['response'] = "connection request canceled."
+        else:
+            payload['response'] = "Unable to cancel that connection request."
+    else:
+        # should never happen
+        payload['response'] = "You must be authenticated to cancel a connection request."
+    return HttpResponse(json.dumps(payload), content_type="application/json")

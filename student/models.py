@@ -81,6 +81,7 @@ class ConnectionRequest(models.Model):
         self.save()
 
     def cancel(self):
+        self.is_active = False
         self.save()
 
 

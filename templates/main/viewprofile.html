@@ -58,7 +58,7 @@
                                     Send Connection Request
                                 </button>
                                 {% elif request_sent == 1 %}
-                                <button class="btn btn-danger rqstalign" id="id_unconsnection_btn">
+                                <button class="btn btn-danger rqstalign" id="id_cancel_conncetion_request_btn">
                                     Cancel Connection Request
                                 </button>
                                 {% else %}
@@ -192,7 +192,9 @@
                 function onConncetionRequestSent(){
                     location.reload();
                 }
-            
+                function onConncetionRequestCancelled(){
+                    location.reload();
+                }
                 function onConncetionRemoved(){
                     location.reload();
                 }
@@ -201,6 +203,13 @@
                 if (sendConncetionRequestBtn != null){
                     sendConncetionRequestBtn.addEventListener("click", function(){
                         sendConncetionRequest({{tutorprofile.user.id}}, onConncetionRequestSent)
+                    })
+                }
+
+                var cancelConncetionRequestBtn = document.getElementById("id_cancel_conncetion_request_btn")
+                if(cancelConncetionRequestBtn != null){
+                    cancelConncetionRequestBtn.addEventListener("click", function(){
+                        cancelconnectionRequest({{tutorprofile.user.id}}, onConncetionRequestCancelled)
                     })
                 }
 
@@ -215,6 +224,7 @@
             {% include 'main/send_connection_request.html' %}
 
             {% include 'main/remove_connection.html' %}
+            {% include 'main/cancel_connection_request.html' %}
             <script>
                 $('.testimonials').owlCarousel({
                     loop: false,
