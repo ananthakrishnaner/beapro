@@ -1,0 +1,199 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel=icon href={% static 'img/beaprologo.png' %} sizes="16x16" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <title>Be A Pro | {{student_profile.fullname}}</title>
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+
+<style type="text/css">
+    
+* {
+     padding: 0;
+     margin: 0;
+     list-style: none;
+     border: none;
+     text-decoration: none;
+     box-sizing: border-box;
+     -webkit-overflow-scrolling: touch;
+     font-family: "Montserrat", sans-serif;
+     line-height: 1;
+}
+ body {
+     background: #e7dcff;
+     background: linear-gradient(120deg, rgba(231, 220, 255, 1) 0%, rgba(255, 234, 203, 0.8687850140056023) 59%, rgba(246, 241, 255, 1) 100%);
+     display: flex;
+     height: 100vh;
+     align-items: center;
+     justify-content: center;
+}
+ .profile {
+     margin: auto;
+     background-color: #fff;
+     border-radius: 40px;
+     width: 480px;
+     padding: 50px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+ .profile .photo {
+     width: 120px;
+     height: 120px;
+     border-radius: 30px;
+     border: 15px solid rgba(246, 242, 255, 0.7);
+     object-fit: cover;
+}
+ .profile .name {
+     margin-top: 24px;
+     font-size: 22px;
+     font-weight: bold;
+}
+ .profile .details {
+     font-size: 13px;
+     font-weight: 400;
+     width: 50%;
+     margin-top: 8px;
+     line-height: 1.3;
+     text-align: center;
+}
+ .profile .buttons {
+     display: flex;
+     align-items: center;
+     margin-top: 50px;
+}
+ .profile .buttons .message {
+     background-color: #ffedd2;
+}
+ .profile .buttons .follow {
+     background: linear-gradient(90deg, rgba(250, 57, 103, 1) 0%, rgba(250, 150, 57, 1) 100%);
+}
+ .profile .buttons .button {
+     width: 186px;
+     height: 54px;
+     border-radius: 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 13px;
+     font-weight: 500;
+     margin-left: 12px;
+     cursor: pointer;
+}
+ .profile .buttons .button:first {
+     margin-left: 0px;
+}
+ .profile .buttons .button svg {
+     height: 22px;
+     margin-right: 4px;
+}
+ 
+
+.cancel-icon{
+    color: red;
+}
+.decline-connection-request:hover {
+    opacity: 0.3;
+}
+.decline-connection-request{
+    color: red;
+    margin-right: 16px;
+}
+
+</style>
+
+   
+</head>
+<body>
+<div class="container">
+    {% include 'main/navbar.html' %}
+<div class="card p-2">
+
+<div class="profile">
+    <img src="{{student_profile.user.profile_image.url}}" alt="" class="photo">
+    <span class="name">{{student_profile.fullname}}</span>
+    <span class="details">{{student_profile.about_me}}</span>
+    <span class="details">{{student_profile.state}}</span>
+    <div class="buttons">
+<!--         <div class="button follow">
+            <span  class="decline-connection-request material-icons "  onclick='triggerRemoveConnection("{{student_profile.user.id}}")'>cancel</span>Bye :(
+        </div> -->
+        <div class="button message">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 20L9 17H7C6.20435 17 5.44129 16.6839 4.87868 16.1213C4.31607 15.5587 4 14.7956 4 14V8C4 7.20435 4.31607 6.44129 4.87868 5.87868C5.44129 5.31607 6.20435 5 7 5H17C17.7956 5 18.5587 5.31607 19.1213 5.87868C19.6839 6.44129 20 7.20435 20 8V14C20 14.7956 19.6839 15.5587 19.1213 16.1213C18.5587 16.6839 17.7956 17 17 17H15L12 20Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8 9H16" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M8 13H14" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+            Send Message
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+       <script src="https://kit.fontawesome.com/e655379602.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>    
+<script src="{% static './js/editprofile.js' %}"></script>
+        <script>
+            $('.testimonials').owlCarousel({
+                loop: false,
+                margin: 20,
+                nav: false,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    800: {
+                        items: 2
+                    }
+                }
+            })
+        </script>
+
+<script type="text/javascript">
+
+                function onConncetionRemoved(){
+                    location.reload();
+                }
+
+                function triggerRemoveConnection(connection_request_id){
+                    removeConnection(connection_request_id, onConncetionRemoved)
+                }
+            </script>
+
+{% include 'student/remove_connection_tutor.html' %}
+
+</body>

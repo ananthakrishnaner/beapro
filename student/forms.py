@@ -26,12 +26,13 @@ class UserProfileForm(forms.ModelForm):
 class StudentUpdateForm(forms.ModelForm):
     class Meta:
         model = StudentProfile
-        fields = ['fullname','mobile','Interest','birth_date','collegeName','country','state']
+        fields = ['fullname','mobile','Interest','about_me','birth_date','collegeName','country','state']
 
         widgets = {
             'fullname':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Full Name'}),
             'mobile':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter mobile number ..'}),
             'Interest':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Interest'}),
+            'about_me': forms.Textarea(attrs={'class': 'form-control','placeholder' : 'Tell Us About Yourself',}),
             'birth_date':forms.DateInput(attrs={'class': 'form-control','placeholder' : 'dd/mm/yyyy','type':'date' }),
             'collegeName':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Name',}),
             'country':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Your Country',}),

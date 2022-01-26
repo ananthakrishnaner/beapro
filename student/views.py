@@ -11,6 +11,9 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseBadRequest
 from datetime import datetime,timedelta,date
+from django.http import HttpResponse
+import json
+from tutor.models import TutorProfile
 
 #create student account
 def account_signup(request):
@@ -261,3 +264,24 @@ def payment_status(request):
     except:
         return render(request,'student/payment-success.html',{'status': False})
 
+
+
+def student_view_profile(request,id):
+    user = request.user
+    payload = {}
+    if user.is_authenticated:
+        studentprofile =  StudentProfile.objects.get(user_id = id)           
+        if studentprofile.user.id == user.id or user.is_tutor :
+            
+            data ={
+                'student_profile':studentprofile,
+            }
+            return render(request,'student/student_view_profile.html',data)
+        else:
+            payload['response'] = "Be Connected First :(."
+        return HttpResponse(json.dumps(payload), content_type="application/json")
+
+
+    else:
+        payload['response'] = "You must be authenticated :(."
+    return HttpResponse(json.dumps(payload), content_type="application/json")

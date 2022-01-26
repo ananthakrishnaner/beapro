@@ -13,6 +13,7 @@ class StudentProfile(models.Model):
     fullname = models.CharField(max_length=30)
     mobile = models.CharField(max_length=15)
     Interest = models.CharField(max_length=45,blank=True)
+    about_me = models.TextField(max_length=700,blank=True)
     birth_date = models.DateField(blank=True,null=True)
     collegeName = models.CharField(max_length=60,blank=True)
     country = models.CharField(max_length=50)

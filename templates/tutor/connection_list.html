@@ -80,14 +80,14 @@
         <div class="d-flex flex-row flex-wrap">
         {% for connection in connection_list %}
         <div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center">
-            <a class="profile-link" href="#">
+            <a class="profile-link" href="{% url 'student-view-profile' connection.id %}">
                 <div class="card-image m-2">
                     <img class="img-fluid profile-image" src="{{connection.profile_image.url}}" alt="">
                 </div>
             </a>
             
             <div class="card-center px-2">
-                <a class="profile-link" href="#">
+                <a class="profile-link" href="{% url 'student-view-profile' connection.id %}">
                     <h4 class="card-title">{{connection.studentprofile.fullname}}</h4>
                     <h6>{{connection.studentprofile.state}}</h6>
                 </a>   

@@ -67,6 +67,16 @@ class TutorProfile(models.Model):
         if not account in self.connections.all():
             self.connections.add(account)
 
+
+    def is_mutual_connection(self, connection):
+        """
+        Is this a connnected?
+        """
+        if connection in self.connection.all():
+            return True
+        return False   
+         
+
 #Remove student
     def remove_connection(self,account):
         if account in self.connections.all():
