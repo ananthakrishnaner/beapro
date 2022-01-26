@@ -175,15 +175,15 @@
                         <a href="#home" class="active">₹{{tutorprofile.amount}}/Hour</a>
                         {% if is_connection == False and is_self == False %}
                             {% if request_sent == 0 %}
-                            <button class="btn btn-primary rqstalignmobile" id="id_send_conncetion_request_btn">
+                            <button class="btn btn-primary rqstalignmobile" id="id_send_conncetion_request_btn1">
                                 Send Connection Request
                             </button>
                             {% elif request_sent == 1 %}
-                            <button class="btn btn-danger rqstalignmobile" id="id_cancel_conncetion_request_btn">
+                            <button class="btn btn-danger rqstalignmobile" id="id_cancel_conncetion_request_btn1">
                                 Cancel Connection Request
                             </button>
                             {% else %}
-                            <button class="btn btn-secondary rqstalignmobile" id="id_unconnection_btn">
+                            <button class="btn btn-secondary rqstalignmobile" id="id_unconnection_btn1">
                                 Remove Connection
                             </button>
                             {% endif %}
@@ -235,6 +235,28 @@
                 }
 
                 var removeConncetionBtn = document.getElementById("id_unconnection_btn")
+                if (removeConncetionBtn != null){
+                    removeConncetionBtn.addEventListener("click", function(){
+                    removeConnection("{{tutorprofile.user.id}}", onConncetionRemoved)
+                    })
+                }
+
+
+                var sendConncetionRequestBtn = document.getElementById("id_send_conncetion_request_btn1")
+                if (sendConncetionRequestBtn != null){
+                    sendConncetionRequestBtn.addEventListener("click", function(){
+                        sendConncetionRequest({{tutorprofile.user.id}}, onConncetionRequestSent)
+                    })
+                }
+
+                var cancelConncetionRequestBtn = document.getElementById("id_cancel_conncetion_request_btn1")
+                if(cancelConncetionRequestBtn != null){
+                    cancelConncetionRequestBtn.addEventListener("click", function(){
+                        cancelconnectionRequest({{tutorprofile.user.id}}, onConncetionRequestCancelled)
+                    })
+                }
+
+                var removeConncetionBtn = document.getElementById("id_unconnection_btn1")
                 if (removeConncetionBtn != null){
                     removeConncetionBtn.addEventListener("click", function(){
                     removeConnection("{{tutorprofile.user.id}}", onConncetionRemoved)
