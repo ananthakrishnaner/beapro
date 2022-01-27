@@ -52,12 +52,14 @@ INSTALLED_APPS = [
     'mainapp',
     'student',
     'tutor',
+    'chat',
     'blogapp',
 
     'crispy_forms',    
     
-
 ]
+
+ #'channels',
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

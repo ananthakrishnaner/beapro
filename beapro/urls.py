@@ -10,6 +10,7 @@ urlpatterns = [
     path('student/',include('student.urls')),
     path('tutor/',include('tutor.urls')),
     path('blog/', include('blogapp.urls')),
+    path('chat/', include('chat.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

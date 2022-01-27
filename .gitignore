@@ -3,3 +3,5 @@ secretfile.py
 media/profile_image/*
 media/tutor/*
 beaproenv/*
+Pipfile.lock
+Pipfile
