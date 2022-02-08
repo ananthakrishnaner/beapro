@@ -30,10 +30,6 @@ def index(request):
         emailmsg = f'Hi Team,\nYou Reacived A Contact Submission {date} From User {user_id}\nUser Email: {email}\n\nMessage:\n{message}\n\n\t\n\tBEAPRO Email Support'
         user_contact = ContactForm.objects.create(name=name,phone=phone,subject=subject,email=email,message=message,user_id=user_id)
         user_contact.save()
-        try:
-            send_mail(subject, emailmsg, email, ['beapro1377@gmail.com'])
-        except BadHeaderError:
-            return redirect('/')
         return redirect('/')
     else:
         try:

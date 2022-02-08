@@ -223,7 +223,7 @@
                         {% for featured in featuredtutor %}
                         <div class="p-5">
                             <div class="d-flex align-items-end mb-5">
-                                 <a  href="{% url 'viewprofile' tutorlist.user.id %}">
+                                 <a  href="{% url 'viewprofile' featured.user.id %}">
                                 <div class="img-radius">
                                     <img src="{{featured.user.profile_image.url}}">
                                 </div></a>
