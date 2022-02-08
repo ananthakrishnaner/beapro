@@ -90,6 +90,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'beapro.wsgi.application'
 
+MAX_UPLOAD_SIZE = "5242880"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
