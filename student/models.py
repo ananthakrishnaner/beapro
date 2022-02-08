@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from accounts.models import Account
 from datetime import datetime
 from tutor.models import TutorProfile
-from chat.utils import find_or_create_private_chat
+
 
 
 # Create your models here.
@@ -38,19 +38,11 @@ class StudentProfile(models.Model):
         if not account in self.connections.all():
             self.connections.add(account)
 
-            chat = find_or_create_private_chat(self.user, account)
-            if not chat.is_active:
-                chat.is_active = True
-                chat.save()
 
 #Remove Tutor 
     def remove_connection(self,account):
         if account in self.connections.all():
             self.connections.remove(account)
-            chat = find_or_create_private_chat(self.user, account)
-            if chat.is_active:
-                chat.is_active = False
-                chat.save()
 
 
     def connectionterminate(self,removee):

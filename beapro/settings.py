@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'mainapp',
     'student',
     'tutor',
-    'chat',
     'blogapp',
 
     'crispy_forms',    
