@@ -49,19 +49,17 @@
                 {% for tutorlist in tutorprofile %}
                 <div class="card 1">
                   <div class="card_image"> 
-                    <a id ="textc" href="{% url 'viewprofile' tutorlist.user.id %}">
                       <img src="{{tutorlist.user.profile_image.url}}" /> 
-                      </a>
                     </div>
                   <div class="card_title title-white">
-                    <h3>{{tutorlist.fullname}} 
+                    <h3> <a id ="textc" href="{% url 'viewprofile' tutorlist.user.id %}">{{tutorlist.fullname}} 
                       {% if tutorlist.verified %}
                       <i class="fas fa-check-circle verify-green"></i>
                       {% else %}
                       <i class="fas fa-check-circle verify-grey"></i>
                       {% endif %}
                     </h3>
-                    <p class="title-black">{{tutorlist.subject_name}}</p>
+                    <p class="title-black">{{tutorlist.subject_name}}</p> </a>
                   </div>
                 </div>
                 {% endfor %}    
