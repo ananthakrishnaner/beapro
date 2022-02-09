@@ -26,7 +26,7 @@ class TutorUpdateForm(forms.ModelForm):
         model = TutorProfile
         fields = ('fullname','mobile','address','birth_date','collegeName','country','state','about_me',
         'experience','subject','individual','group','class_will_be_held_on','your_cv','qualification',
-        'qualification_cert','social_profile','promo_video','amount','skills'
+        'qualification_cert','social_profile','promo_video','amount','skills','subject_name'
         )
 
         widgets = {
@@ -35,6 +35,7 @@ class TutorUpdateForm(forms.ModelForm):
             'address':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter address'}),
             'birth_date':forms.DateInput(attrs={'class': 'form-control','placeholder' : 'dd/mm/yyyy','type':'date' }),
             'collegeName':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Name',}),
+            'subject_name':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Tutoring Subject Name...',}),
             'country':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Your Country',}),
             'state':forms.TextInput(attrs={'class': 'form-control','placeholder' : 'Enter Your State',}),
             'about_me': forms.Textarea(attrs={'class': 'form-control','placeholder' : 'Tell Us About Yourself',}),

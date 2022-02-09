@@ -36,6 +36,7 @@ class TutorProfile(models.Model):
     skills = models.TextField(max_length=500,blank=True)
     experience = models.TextField(max_length=700)
     subject = models.CharField( choices=subject_choices, max_length=20,null=True, default=None)
+    subject_name = models.CharField(max_length=60,blank=True)
     individual = models.BooleanField(default=False)
     group = models.BooleanField(default=False)
     class_will_be_held_on = models.CharField( choices=Classes_will_be_held_on_choice, max_length=20,null=True, default=None)
