@@ -18,6 +18,7 @@ class StudentProfile(models.Model):
     about_me = models.TextField(max_length=700,blank=True)
     birth_date = models.DateField(blank=True,null=True)
     collegeName = models.CharField(max_length=60,blank=True)
+    language_spoken = models.CharField(max_length=60,blank=True)
     country = models.CharField(max_length=50)
     state = models.CharField(max_length=50,blank=True)
     wallet_amount = models.IntegerField(blank=True,null=True,default=10)
