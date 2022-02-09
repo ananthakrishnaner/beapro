@@ -5,3 +5,4 @@ media/tutor/*
 beaproenv/*
 Pipfile.lock
 Pipfile
+__pycache__/*
