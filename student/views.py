@@ -137,6 +137,7 @@ def student_wallet(request):
     student = StudentProfile.objects.get(user=user)
     currency = 'INR'
     useremail = request.user.email
+    usermobile = request.user.studentprofile.mobile
     if request.method == 'POST':
         name = student.fullname
         org_amount = request.POST['amount']
@@ -148,6 +149,7 @@ def student_wallet(request):
             beapro_payment = StudentTransaction(
                 fullname=name,
                 email = useremail,
+                mobilenumber = usermobile,
                 amount=org_amount,
                 order_id=order_id
             )
@@ -238,6 +240,7 @@ def payment_status(request):
         transaction = StudentTransaction.objects.get(order_id=response['razorpay_order_id'])
         transaction.paid =True
         transaction.payment_id = response['razorpay_payment_id']
+        transaction.savetransaction()
         transaction.save()
         ords = client.order.fetch(order_id)
         paid_amt = ords['amount_paid']

@@ -4,8 +4,9 @@ from django.db.models.expressions import F
 from django.dispatch import receiver
 from accounts.models import Account
 from datetime import datetime
+from twilio.rest import Client
 from tutor.models import TutorProfile
-
+from secretfile import *
 
 
 # Create your models here.
@@ -111,6 +112,7 @@ class Coincheck(models.Model):
 class StudentTransaction(models.Model):
     fullname = models.CharField(max_length=30,blank=True)
     email = models.EmailField(blank=True)
+    mobilenumber = models.CharField(max_length=20,blank=True)
     amount = models.CharField(max_length=30,blank=True)
     order_id = models.CharField(max_length=130,blank=True)
     payment_id = models.CharField(max_length=130,blank=True)
@@ -121,3 +123,19 @@ class StudentTransaction(models.Model):
     def __str__(self):
         return self.fullname
 
+    def savetransaction(self,*args,**kwargs):
+        if self.paid == True:
+            client = Client(account_sid, auth_token)
+            print(self.paid)
+            message = client.messages.create(
+                                body=f'''
+                                Congrats {self.fullname} your purchase of coin  is now credited
+                                order id: {self.order_id}
+                                Purchase Amount: {self.amount}
+                                Payment id : {self.payment_id}
+                                ''',
+                                from_=sms_number,
+                                to=f'+91{self.mobilenumber}'
+                        )
+            print(message.sid)
+        return super().save(*args,**kwargs)
