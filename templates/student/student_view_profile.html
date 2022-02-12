@@ -386,7 +386,7 @@ p{
             <h1 class="username">{{student_profile.fullname}}</h1>
             <p>{{student_profile.about_me}}</p>
             <br>
-            <p>{{student_profile.state}}| {{student_profile.language_spoken}} | {{student_profile.mobile}}</p>
+            <p>{{student_profile.state}}| {{student_profile.language_spoken}} | {{student_profile.mobile}} | {{student_profile.user.email}}</p>
             <div class="user_info">
                 <button class="info first" onclick="sendEmail();">Contact</button>
                 <button class="info" onclick="backToHome();" >Home</button>
@@ -402,12 +402,12 @@ p{
 <script>
 function sendEmail() 
 {
-    window.location = "mailto:{{student_profile.user.email}}";
+    location.href = "mailto:{{student_profile.user.email}}";
 }
 
 function backToHome() 
 {
-    window.location = "/";
+    location.href = "/";
 }
 
 </script>
