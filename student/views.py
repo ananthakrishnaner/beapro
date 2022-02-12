@@ -14,6 +14,7 @@ from datetime import datetime,timedelta,date
 from django.http import HttpResponse
 import json
 from tutor.models import TutorProfile
+from django.contrib.auth.decorators import login_required
 
 #create student account
 def account_signup(request):
@@ -69,13 +70,18 @@ def logout_student(request):
 
 # Edit Profile
 
+@login_required(login_url='student_account_login') 
 def student_profile(request):
     
     try:
         user = request.user
         username = request.user.username
         today = date.today()
-        student = StudentProfile.objects.get(user=user)
+        try:
+            student = StudentProfile.objects.get(user=user)
+        except StudentProfile.DoesNotExist:
+            return None
+
         if Coincheck.objects.filter(name=username,coindate=today).exists():
             account_verified = StudentProfile.objects.filter(user=user,account_verified=True)
             if request.method == 'POST':
@@ -108,7 +114,7 @@ def student_profile(request):
             student.wallet_amount -=10
             student.prime_user =True
             student.save()
-            return redirect('/')
+            return redirect(request.path)
         else:
             student.prime_user =False
             student.save()
@@ -125,6 +131,7 @@ razorpay_client = razorpay.Client(
 
 
 #Student wallet
+@login_required(login_url='student_account_login') 
 def student_wallet(request):
     user = request.user
     student = StudentProfile.objects.get(user=user)
@@ -165,7 +172,7 @@ def student_wallet(request):
         return render(request,'student/swallet.html',data)
 
 
-
+@login_required(login_url='student_account_login')
 def mytutor(request,*args, **kwargs):
     context = {}
     user = request.user
@@ -173,7 +180,6 @@ def mytutor(request,*args, **kwargs):
         if user:
             try:
                 this_user = Account.objects.get(username=user)
-                print(this_user)
                 connection_list = StudentProfile.objects.get(user=this_user)
                 user_connection_list = connection_list.connections.all()
                 context['connection_list'] = user_connection_list

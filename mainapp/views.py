@@ -11,8 +11,10 @@ from django.utils.formats import localize
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 import json
+from django.contrib.auth.decorators import login_required
+from datetime import datetime,timedelta,date
 
-from student.models import StudentProfile,ConnectionRequest
+from student.models import StudentProfile,ConnectionRequest,Coincheck
 from tutor.models import TutorProfile
 from student.utils import get_connection_request_or_false
 from student.connection_request_status import ConnectionRequestStatus
@@ -49,6 +51,7 @@ def index(request):
             return render(request,'main/index.html')
 
 
+@login_required(login_url='student_account_login')
 def tutorprofiles(request):
     if request.user.is_student:
         tutorprofile = TutorProfile.objects.all()
@@ -78,29 +81,45 @@ def tutorprofiles(request):
 
 
 
-
+@login_required(login_url='student_account_login') 
 def viewprofile(request,id):
     tutorprofile =  TutorProfile.objects.get(user_id = id) 
     is_self = True
     is_connection = False
+    student = None
     connection_request = None
     request_sent = -1
     viewingprofile = TutorProfile.objects.filter(user=tutorprofile.user)
     connections = viewingprofile[0].connections.all()
     user = request.user
-    student = StudentProfile.objects.get(user=user)
     if user.is_authenticated:
-        is_self = False
-        if connections.filter(pk=user.id):
-            is_connection = False
-        else:
-            is_connection = False
-            #CASE1: requset sent
-            if get_connection_request_or_false(sender=user,receiver=tutorprofile.user) != False:
-                request_sent = ConnectionRequestStatus.YOU_SENT_TO_THEM.value
-            #Case2: no request
+        username = request.user.username
+        today = date.today()
+        student = StudentProfile.objects.get(user=user)
+        if Coincheck.objects.filter(name=username,coindate=today).exists():
+            is_self = False
+            if connections.filter(pk=user.id):
+                is_connection = False
             else:
-                request_sent = ConnectionRequestStatus.NO_REQUEST_SENT.value
+                is_connection = False
+                #CASE1: requset sent
+                if get_connection_request_or_false(sender=user,receiver=tutorprofile.user) != False:
+                    request_sent = ConnectionRequestStatus.YOU_SENT_TO_THEM.value
+                #Case2: no request
+                else:
+                    request_sent = ConnectionRequestStatus.NO_REQUEST_SENT.value
+
+        elif student.wallet_amount > 9:
+            Coincheck.objects.create(name=username,coindate=today)
+            student.wallet_amount -=10
+            student.prime_user =True
+            student.save()
+            return redirect(request.path)
+        else:
+            student.prime_user =False
+            student.save()
+            return redirect('/student/wallet/')
+
     elif not user.is_authenticated:
         is_self=False
     else:

@@ -6,6 +6,7 @@ from accounts.models import Account
 from .forms import UserProfileForm,TutorUpdateForm
 from django.http import HttpResponse
 import json
+from django.contrib.auth.decorators import login_required
 from student.models import ConnectionRequest,StudentProfile
 
 #create Tutor account
@@ -60,6 +61,7 @@ def logout_tutor(request):
 
 
 #Tutor Profile
+@login_required(login_url='tutor_account_login')
 def tutor_profile(request):
     try:
         user = request.user
