@@ -1,26 +1,3 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel=icon href={% static 'img/beaprologo.png' %} sizes="16x16" type="image/png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
-    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
-    <title>Be A Pro | anusha</title>
-  <link rel="manifest" href="/static/manifest.json">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
-<style type="text/css">
-    
 * {
     padding: 0;
     margin: 0;
@@ -54,14 +31,14 @@ body {
 /* * -------------------------------- Section Navigation Starts--------------------------------------- * */
 a,
 button {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    cursor: pointer;
-    border: none;
-    /* outline: none; */
-    /* background: none; */
-    text-decoration: none;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	cursor: pointer;
+	border: none;
+	/* outline: none; */
+	/* background: none; */
+	text-decoration: none;
 }
 .navbar{
     display: flex;
@@ -148,7 +125,7 @@ button {
     top: 0px;
     left: 0px;
     clip-path: ellipse(100% 85% at 0% 50%);
-    background: url('{{student_profile.user.profile_image.url}}') no-repeat top;
+    background: url('../img/social-media-profile-photos.jpg') no-repeat top;
     background-size: auto 114%;
     background-position-x: center;
     background-color: rgba(223, 228, 255, 0.25);
@@ -361,7 +338,7 @@ p{
         top: 0px;
         left: 0px;
         clip-path: ellipse(130% 100% at 50% -20%);
-        background: url('{{student_profile.user.profile_image.url}}') no-repeat top;
+        background: url('../img/social-media-profile-photos.jpg') no-repeat top;
         background-size: auto 114%;
         background-position-x: center;
         background-color: rgba(223, 228, 255, 0.25);
@@ -370,59 +347,3 @@ p{
 
 }
 /* * ----------------------------------- Responsive 768px End ------------------------------------  */
-</style>
-
-
-</head>
-<body>
-    <!-- Body Design Start -->
-    <main class="profile_container">
-        <div class="wraps">
-            <div class="profile_img">
-              <span></span>
-            </div>
-        </div>
-        <div class="profile_details">
-            <h1 class="username">{{student_profile.fullname}}</h1>
-            <p>{{student_profile.about_me}}</p>
-            <br>
-            <p>{{student_profile.state}}| {{student_profile.language_spoken}} | {{student_profile.mobile}}</p>
-            <div class="user_info">
-                <button class="info first" onclick="sendEmail();">Contact</button>
-                <button class="info" onclick="backToHome();" >Home</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Body Design End -->
-
-    <!-- <script src="{% static 'js/studentviewscript.js' %}"></script> -->
-
-
-<script>
-function sendEmail() 
-{
-    window.location = "mailto:{{student_profile.user.email}}";
-}
-
-function backToHome() 
-{
-    window.location = "/";
-}
-
-</script>
-
-<script type="text/javascript">
-
-                function onConncetionRemoved(){
-                    location.reload();
-                }
-
-                function triggerRemoveConnection(connection_request_id){
-                    removeConnection(connection_request_id, onConncetionRemoved)
-                }
-            </script>
-
-{% include 'student/remove_connection_tutor.html' %}
-
-</body>
