@@ -51,6 +51,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+.verify-green{
+    color: green;
+}
 /* * -------------------------------- Section Navigation Starts--------------------------------------- * */
 a,
 button {
@@ -345,7 +348,7 @@ p{
         font-size: 12px;
     }
     .username{
-        font-size: 33px;
+        font-size: 28px;
     }
     .wraps {
         position: absolute;
@@ -383,7 +386,12 @@ p{
             </div>
         </div>
         <div class="profile_details">
-            <h1 class="username">{{student_profile.fullname}}</h1>
+            <h1 class="username">
+                {{student_profile.fullname}} 
+                {% if student_profile.account_verified %}
+                <i class="fas fa-check-circle verify-green"></i>
+                {% endif %}
+            </h1>
             <p>{{student_profile.about_me}}</p>
             <br>
             <p>{{student_profile.state}}| {{student_profile.language_spoken}} | {{student_profile.mobile}} | {{student_profile.user.email}}</p>
