@@ -1,3 +1,4 @@
+import numbers
 from webbrowser import get
 from django.db import connections
 from django.dispatch import receiver
@@ -13,6 +14,8 @@ from django.http import HttpResponse
 import json
 from django.contrib.auth.decorators import login_required
 from datetime import datetime,timedelta,date
+
+from .utils import *
 
 from student.models import StudentProfile,ConnectionRequest,Coincheck
 from tutor.models import TutorProfile
@@ -147,7 +150,7 @@ def send_connection_request(request, *args, **kwargs):
 		user_id = request.POST['receiver_user_id']
 		if user_id:
 			receiver = Account.objects.get(pk=user_id)
-			print(receiver)
+			#print(receiver)
             
 			try:
 				# Get any connection_requests requess (active and not-active)
@@ -160,7 +163,11 @@ def send_connection_request(request, *args, **kwargs):
 					# If none are active create a new Connection request
 					connection_requests = ConnectionRequest(sender=user, receiver=receiver)
 					connection_requests.save()
+					cr = ConnectionRequest.objects.filter(sender=user, receiver=receiver,is_active=True)
 					payload['response'] = "Connection request sent."
+					text = f'You Have a connection request from {user.studentprofile.fullname} from {user.studentprofile.state} '
+					num=cr[0].receiver.tutorprofile.mobile
+					send_sms(text,num)
 				except Exception as e:
 					payload['response'] = str(e)
 			except ConnectionRequest.DoesNotExist:
@@ -192,7 +199,9 @@ def accept_connection_request(request, *args, **kwargs):
                     # found the request. Now accept it
                     updated_notification = connection_request.accept()
                     payload['response'] = "connection request accepted."
-
+                    text = f'Your connection request as been accepted by {user.tutorprofile.fullname} all the best for your {user.tutorprofile.subject_name} learning'
+                    num=connection_request.sender.studentprofile.mobile
+                    send_sms(text,num)
                 else:
                     payload['response'] = "Something went wrong."
             else:
