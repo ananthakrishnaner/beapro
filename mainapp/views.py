@@ -54,6 +54,10 @@ def index(request):
             return render(request,'main/index.html')
 
 
+def faq(request):
+    request render(request,'main/faq.html')
+
+
 @login_required(login_url='student_account_login')
 def tutorprofiles(request):
     if request.user.is_student:
