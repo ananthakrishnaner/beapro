@@ -24,13 +24,35 @@
                 <img src="{% static 'img/beaprologo.png' %}" alt="BEAPRO">
             </div>
             <div class="col-md-6 col-lg-3 mb-5">
+              <a href="/blog/">
                 <h6 class="mb-4 font-weight-bold">Blog</h6>
+              </a>
             </div>
+            {% if user.is_student %}
             <div class="col-md-6 col-lg-3 mb-5">
+              <a href="/student/profile/">
                 <h6 class="mb-4 font-weight-bold">Profile</h6>
+              </a>
             </div>
+            {% elif user.is_tutor %}
             <div class="col-md-6 col-lg-3 mb-5">
+              <a href="/tutor/profile/">
+                <h6 class="mb-4 font-weight-bold">Profile</h6>
+              </a>
+            </div>
+            {% elif user.is_superuser %}
+            <div class="col-md-6 col-lg-3 mb-5">
+              <a href="/admin/">
+                <h6 class="mb-4 font-weight-bold">Profile</h6>
+              </a>
+            </div>
+            {% else %}
+            <!-- not logged in -->
+            {% endif %}
+            <div class="col-md-6 col-lg-3 mb-5">
+              <a href="/privacy/">
                 <h6 class="mb-4 font-weight-bold">Privacy & Terms</h6>
+              </a>
             </div>
         </div>
     </div>
