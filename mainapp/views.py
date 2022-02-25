@@ -55,7 +55,7 @@ def index(request):
 
 
 def faq(request):
-    request render(request,'main/faq.html')
+    return render(request,'main/faq.html')
 
 
 @login_required(login_url='student_account_login')
