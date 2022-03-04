@@ -125,6 +125,9 @@ def viewprofile(request,id):
         else:
             student.prime_user =False
             student.save()
+            num = user.studentprofile.mobile
+            text = f'Your wallet as no sufficient money recharge now :) current coin {user.studentprofile.wallet_amount } link: https://beapro.tech/student/wallet/'
+            send_sms(text,num)
             return redirect('/student/wallet/')
 
     elif not user.is_authenticated:
