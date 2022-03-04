@@ -203,9 +203,13 @@ def accept_connection_request(request, *args, **kwargs):
                     # found the request. Now accept it
                     updated_notification = connection_request.accept()
                     payload['response'] = "connection request accepted."
-                    text = f'Your connection request as been accepted by {user.tutorprofile.fullname} all the best for your {user.tutorprofile.subject_name} learning'
-                    num=connection_request.sender.studentprofile.mobile
-                    send_sms(text,num)
+                    textToStudent = f'Your connection request as been accepted by {user.tutorprofile.fullname} all the best for your {user.tutorprofile.subject_name} learning'
+                    textToTutor = f'Congrats for getting your new student {connection_request.sender.studentprofile.fullname} you can vistit the profile by visiting the link https://beapro.tech/student/studentview/{connection_request.sender.id}'
+                    numStudent=connection_request.sender.studentprofile.mobile
+                    numTutor = user.tutorprofile.mobile
+                    send_sms(textToStudent,numStudent)
+                    send_sms(textToTutor,numTutor)
+
                 else:
                     payload['response'] = "Something went wrong."
             else:
