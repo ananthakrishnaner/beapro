@@ -102,7 +102,10 @@ def viewprofile(request,id):
     if user.is_authenticated:
         username = request.user.username
         today = date.today()
-        student = StudentProfile.objects.get(user=user)
+        try:
+            student = StudentProfile.objects.get(user=user)
+        except StudentProfile.DoesNotExist:
+            return redirect('index')
         if Coincheck.objects.filter(name=username,coindate=today).exists():
             is_self = False
             if connections.filter(pk=user.id):
@@ -126,7 +129,7 @@ def viewprofile(request,id):
             student.prime_user =False
             student.save()
             num = user.studentprofile.mobile
-            text = f'Your wallet as no sufficient money recharge now :) current coin {user.studentprofile.wallet_amount } link: https://beapro.tech/student/wallet/'
+            text = f'Your wallet as no sufficient coin current-coin:{user.studentprofile.wallet_amount} recharge now :) link: https://beapro.tech/student/wallet/'
             send_sms(text,num)
             return redirect('/student/wallet/')
 
@@ -207,7 +210,7 @@ def accept_connection_request(request, *args, **kwargs):
                     updated_notification = connection_request.accept()
                     payload['response'] = "connection request accepted."
                     textToStudent = f'Your connection request as been accepted by {user.tutorprofile.fullname} all the best for your {user.tutorprofile.subject_name} learning visit the link https://beapro.tech/tutorprofiles/{user.id}'
-                    textToTutor = f'Congrats for getting your new student {connection_request.sender.studentprofile.fullname} you can vistit the profile by visiting the link https://beapro.tech/student/studentview/{connection_request.sender.id}'
+                    textToTutor = f'Congrats for getting your new student {connection_request.sender.studentprofile.fullname} you can the link to visit their profile https://beapro.tech/student/studentview/{connection_request.sender.id}'
                     numStudent=connection_request.sender.studentprofile.mobile
                     numTutor = user.tutorprofile.mobile
                     send_sms(textToStudent,numStudent)
@@ -276,3 +279,4 @@ def cancel_connection_request(request, *args, **kwargs):
         # should never happen
         payload['response'] = "You must be authenticated to cancel a connection request."
     return HttpResponse(json.dumps(payload), content_type="application/json")
+    
