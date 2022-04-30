@@ -19,225 +19,262 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-<style type="text/css">
-    
-* {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    border: none;
-    text-decoration: none;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch;
-    font-family: "Montserrat", sans-serif;
-    line-height: 1;
-}
-body {
-    font-family: "Jost", sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: #34302d;
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    background-image: linear-gradient(
-        111.1deg,
-        rgba(0, 40, 70, 1) -4.8%,
-        rgb(253, 156, 156) 82.7%,
-        rgba(255, 175, 123, 1) 97.2%
-    );
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.verify-green{
-    color: green;
-}
-/* * -------------------------------- Section Navigation Starts--------------------------------------- * */
-a,
-button {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    cursor: pointer;
-    border: none;
-    /* outline: none; */
-    /* background: none; */
-    text-decoration: none;
-}
-.navbar{
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: center;
-    height: 10vh;
-    background-color: rgba(255, 255, 255, 0.253);
-}
-.navbar-ul{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    align-items: center;
-    margin: 0;
-    
-}
-.navbar-ul-inside{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 50rem;
-}
-.navbar-ul-inside a{
-    color: #fff;
-    font-weight: 500;
-    font-size: 15px;
-    margin: 20px auto ;
-}
-.burger{
-    position: absolute;
-    top: .75rem;
-    right: 1rem;
-    height: 30px;
-    width: 30px;
-    flex-direction: column;
-    justify-content: space-between;
-    display: none;
-}
-.burger div{
-    background: #000;
-    width: 100%;
-    height: 3px;
-    margin: 5px auto;
-}
+     <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            text-decoration: none;
+            box-sizing: border-box;
+            -webkit-overflow-scrolling: touch;
+            font-family: "Montserrat", sans-serif;
+            line-height: 1;
+        }
 
-/* * ----------------------------------- Section Navigation Ends ------------------------------------  */
-/* * ----------------------------------- Section Main Starts------------------------------------  */
-.profile_container {
-    width: 660px;
-    height: 340px;
-    box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.1), 0px 0px 10px rgba(255, 255, 255, 0.15);
-    /* margin: 10% auto; */
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    border-radius: 16px;
-    box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.1), 0px 0px 10px rgba(255, 255, 255, 0.15);
-}
-.profile_details ::after {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(223, 228, 255, 0.101);
-    border-radius: 16px;
-    /* filter: blur(5px); */
-}
-.wraps {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-}
-.profile_img {
-    width: 40%;
-    flex: 0 0 40%;
-    height: calc(100% + 1px);
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    clip-path: ellipse(100% 85% at 0% 50%);
-    background: url('{{student_profile.user.profile_image.url}}') no-repeat top;
-    background-size: auto 114%;
-    background-position-x: center;
-    background-color: rgba(223, 228, 255, 0.25);
-    z-index: 10;
-}
+        .lni-whatsapp {
+            color: green;
+        }
 
-/* 
+        body {
+            font-family: "Jost", sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #34302d;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+            background-image: linear-gradient(111.1deg,
+                    rgba(0, 40, 70, 1) -4.8%,
+                    rgb(253, 156, 156) 82.7%,
+                    rgba(255, 175, 123, 1) 97.2%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    --------------------------- Profile Pic ends ----------------------------
+        .verify-green {
+            color: green;
+        }
 
-    --------------------------- Profile Description Design Start ----------------------------
+        /* * -------------------------------- Section Navigation 
+Starts--------------------------------------- * */
+        a,
+        button {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            cursor: pointer;
+            border: none;
+            /* outline: none; */
+            /* background: none; */
+            text-decoration: none;
+        }
+
+        .navbar {
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            height: 10vh;
+            background-color: rgba(255, 255, 255, 0.253);
+        }
+
+        .navbar-ul {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            align-items: center;
+            margin: 0;
+
+        }
+
+        .navbar-ul-inside {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 50rem;
+        }
+
+        .navbar-ul-inside a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 15px;
+            margin: 20px auto;
+        }
+
+        .burger {
+            position: absolute;
+            top: .75rem;
+            right: 1rem;
+            height: 30px;
+            width: 30px;
+            flex-direction: column;
+            justify-content: space-between;
+            display: none;
+        }
+
+        .burger div {
+            background: #000;
+            width: 100%;
+            height: 3px;
+            margin: 5px auto;
+        }
+
+        /* * ----------------------------------- Section Navigation Ends 
+------------------------------------  */
+        /* * ----------------------------------- Section Main 
+Starts------------------------------------  */
+        .profile_container {
+            width: 660px;
+            height: 390px;
+            box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.1), 0px 0px 10px rgba(255, 255, 255, 0.15);
+            /* margin: 10% auto; */
+            overflow: hidden;
+            background-color: antiquewhite;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            border-radius: 16px;
+            box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.1), 0px 0px 10px rgba(255, 255, 255, 0.15);
+        }
+
+        /* .profile_details ::after {
+            
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 150%;
+            background-color: rgba(223, 228, 255, 0.101);
+            border-radius: 16px;
+            /* filter: blur(5px); */
+        /* } */ */
+
+        .wraps {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+        }
+
+        .profile_img {
+            width: 40%;
+            flex: 0 0 40%;
+            height: calc(100% + 1px);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            clip-path: ellipse(100% 85% at 0% 50%);
+            background: url('https://beapro.tech//media/profile_image/4/profile_image_78ssUTI.png') no-repeat top;
+            background-size: auto 114%;
+            background-position-x: center;
+            background-color: rgba(223, 228, 255, 0.25);
+            z-index: 10;
+        }
+
+        /* 
+
+    --------------------------- Profile Pic ends 
+----------------------------
+
+    --------------------------- Profile Description Design Start 
+----------------------------
 
 */
-.profile_details {
-    width: 100%;
-    margin-left: 16rem;
-    padding: 25px;
-    height: fit-content;
-    text-align: center;
-}
-.username {
-    font-size: 38px;
-    color: rgb(0, 0, 0);
-    font-weight: 500;
-    margin: 0px;
-    margin-bottom: 0px;
-}
-p{
-    margin: 10px;
-    font-weight: 500;
-    text-align: justify;
-    color: rgb(36, 35, 35);
-}
-.user_info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-.info {
-    /* position: absolute; */
-    z-index: 5;
-    padding: 10px 25px;
-    line-height: 22px;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-radius: 3px;
-    margin: auto 5px;
-    color: #fff;
-    cursor: pointer;
-    /* transition: all 0.4s;
+        .profile_details {
+            width: 100%;
+            margin-left: 16rem;
+            padding: 25px;
+            height: fit-content;
+            text-align: center;
+        }
+
+        p .icon-class{
+            cursor: pointer;
+        }
+
+        .username {
+            font-size: 38px;
+            color: rgb(0, 0, 0);
+            font-weight: 500;
+            margin: 0px;
+            margin-bottom: 0px;
+        }
+
+        p {
+            margin: 10px;
+            font-weight: 500;
+            text-align: justify;
+            color: rgb(36, 35, 35);
+        }
+
+        .user_info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            /* position: absolute; */
+            z-index: 5;
+            padding: 10px 25px;
+            line-height: 22px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            margin: auto 5px;
+            color: #fff;
+            cursor: pointer;
+            /* transition: all 0.4s;
     transition-timing-function:cubic-bezier(0.5, 3, 0, 1);
     text-decoration: none; */
-    transition: all 0.5s ease-in-out;
-}
-.info::after{
-    content: "";
-    background: none;
-}
-.info:hover{
-    transform:scale(1.1, 1.1);
-    border: none;
-}
-.info:first-child {
-    background-image: linear-gradient(to right, #f857a6 0%, #ff5858 51%, #f857a6 100%);
-    background-size: 200% auto;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    display: block;
-}
-.info:last-child {
-    background-image: linear-gradient(to right, #d53369 0%, #8e6dcb 51%, #d53369 100%);
-    background-size: 200% auto;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    display: block;
-    padding: 10px 40px;
-}
+            transition: all 0.5s ease-in-out;
+        }
 
-/* --------------------------- Profile Description Design Start ---------------------------- */
-/* * ----------------------------------- Section Main Ends ------------------------------------  */
+        .info::after {
+            content: "";
+            background: none;
+        }
+
+        .info:hover {
+            transform: scale(1.1, 1.1);
+            border: none;
+        }
+
+        .info:first-child {
+            background-image: linear-gradient(to right, #f857a6 0%, #ff5858 51%,
+                    #f857a6 100%);
+            background-size: 200% auto;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            display: block;
+        }
+
+        .info:last-child {
+            background-image: linear-gradient(to right, #d53369 0%, #8e6dcb 51%,
+                    #d53369 100%);
+            background-size: 200% auto;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            display: block;
+            padding: 10px 40px;
+        }
+
+        /* --------------------------- Profile Description Design Start 
+---------------------------- */
+        /* * ----------------------------------- Section Main Ends 
+------------------------------------  */
 
 
-/* * ----------------------------------- Responsive 768px Start ------------------------------------  */
-@media screen and (max-width:768px){
-    /* body{
+        /* * ----------------------------------- Responsive 768px Start 
+------------------------------------  */
+        @media screen and (max-width:768px) {
+
+            /* body{
         overflow-x: hidden;
     }
     .navbar-ul{
@@ -255,8 +292,8 @@ p{
     .navbar-ul-inside li a{
         color: #000;
         padding: .5rem 1rem; */
-        /* opacity: 0; */
-    /* }
+            /* opacity: 0; */
+            /* }
     .navbar-ul-inside.active{
         display: flex;
     }
@@ -264,36 +301,43 @@ p{
         display: block;
         margin-left:200px;
     } */
-    /* .nav-active{
+            /* .nav-active{
         transform: translateX(0%);
     } */
-    .profile_container{
-        width: 550px;
-        height: 340px;
-        
-    }
-    .profile_details {
-        width: 100%;
-        margin-left: 13rem;
-        padding: 15px 25px;
-        height: fit-content;
-    }  
-    .user_info {
-        margin-bottom: 20px;
-    }
-    p{
-        font-size: 11px;
-    }
-    .info{
-        font-size: 12px;
-    }
-    .username{
-        font-size: 33px;
-    }
+            .profile_container {
+                width: 550px;
+                height: 340px;
 
-}
-@media screen and (max-width:600px){
-    /* body{
+            }
+
+            .profile_details {
+                width: 100%;
+                margin-left: 13rem;
+                padding: 15px 25px;
+                height: fit-content;
+            }
+
+            .user_info {
+                margin-bottom: 20px;
+            }
+
+            p {
+                font-size: 11px;
+            }
+
+            .info {
+                font-size: 12px;
+            }
+
+            .username {
+                font-size: 33px;
+            }
+
+        }
+
+        @media screen and (max-width:600px) {
+
+            /* body{
         overflow-x: hidden;
     }
     .navbar-ul{
@@ -311,8 +355,8 @@ p{
     .navbar-ul-inside li a{
         color: #000;
         padding: .5rem 1rem; */
-        /* opacity: 0; */
-    /* }
+            /* opacity: 0; */
+            /* }
     .navbar-ul-inside.active{
         display: flex;
     }
@@ -320,60 +364,72 @@ p{
         display: block;
         margin-left:200px;
     } */
-    /* .nav-active{
+            /* .nav-active{
         transform: translateX(0%);
     } */
-    .profile_container{
-        width: 300px;
-        height: 500px;
-        /* display: flex;
+            .profile_container {
+                width: 300px;
+                height: 500px;
+                /* display: flex;
         flex-direction: column; */
-        
-    }
-    .profile_details {
-        /* background-color: #fff; */
-        margin: 65% auto;
-        /* width: 100%;
+
+            }
+
+            .profile_details {
+                background-color: #fff; 
+                margin: 65% auto;
+                 width: 100%;
         margin-left: -.8rem;
         padding: 15px 25px;
-        height: fit-content; */
-    }  
-    .user_info {
-        margin-bottom: 20px;
-    }
-    p{
-        font-size: 11px;
-    }
-    .info{
-        font-size: 12px;
-    }
-    .username{
-        font-size: 28px;
-    }
-    .wraps {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 5;
-    }
-    .profile_img {
-        width: 100%;
-        flex: 0 0 40%;
-        height: calc(50% + 1px);
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        clip-path: ellipse(130% 100% at 50% -20%);
-        background: url('{{student_profile.user.profile_image.url}}') no-repeat top;
-        background-size: auto 114%;
-        background-position-x: center;
-        background-color: rgba(223, 228, 255, 0.25);
-        z-index: 10;
-    }
+        height: fit-content;
+            }
 
-}
-/* * ----------------------------------- Responsive 768px End ------------------------------------  */
-</style>
+            .user_info {
+                bottom: 30px;
+    /* margin-bottom: 100%; */
+    position: relative
+            }
+
+            p {
+                font-size: 11px;
+            }
+
+            .info {
+                font-size: 12px;
+            }
+
+            .username {
+                font-size: 28px;
+            }
+
+            .wraps {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 5;
+            }
+
+            .profile_img {
+                width: 100%;
+                flex: 0 0 40%;
+                height: calc(50% + 1px);
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                clip-path: ellipse(130% 100% at 50% -20%);
+                background:
+                    url('https://beapro.tech/media/profile_image/4/profile_image_78ssUTI.png') no-repeat top;
+                background-size: auto 114%;
+                background-position-x: center;
+                background-color: rgba(223, 228, 255, 0.25);
+                z-index: 10;
+            }
+
+        }
+
+        /* * ----------------------------------- Responsive 768px End 
+------------------------------------  */
+    </style>
 
 
 </head>
@@ -394,9 +450,10 @@ p{
             </h1>
             <p>{{student_profile.about_me}}</p>
             <br>
-            <p>{{student_profile.state}}| {{student_profile.language_spoken}} | {{student_profile.mobile}} | {{student_profile.user.email}}</p>
+            <p>{{student_profile.state}}| {{student_profile.language_spoken}} | {{student_profile.mobile}} <a href="https://wa.me/91{{student_profile.mobile}}" ><i class="lni lni-whatsapp"></i> </a>| {{student_profile.user.email}}</p>
+            <br><br><br><br>
             <div class="user_info">
-                <button class="info first" onclick="sendEmail();">Contact</button>
+                <button class="info first" onclick="sendEmail();">Contact</button>&nbsp;&nbsp;&nbsp;
                 <button class="info" onclick="backToHome();" >Home</button>
             </div>
         </div>
@@ -412,7 +469,9 @@ function sendEmail()
 {
     location.href = "mailto:{{student_profile.user.email}}";
 }
-
+function whatsApp() {
+    location.href = "https://wa.me/91{{student_profile.mobile}}";
+}
 function backToHome() 
 {
     location.href = "/";
